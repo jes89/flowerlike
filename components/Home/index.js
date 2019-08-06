@@ -22,14 +22,12 @@ export default class Home extends Component {
         const { isLoading } = this.state;
 
         if(isLoading){
-            setTimeout(onLoadContents, 1000);
+            setTimeout(onLoadContents, 500);
         }
 
         return (
             <Fragment>
-            <ScrollView
-                
-                style={styles.container}>
+            <ScrollView style={styles.container}>
                   {
                       isLoading ? <Spinner visible={true} /> : 
                       <View>

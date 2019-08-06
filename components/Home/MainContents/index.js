@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import ContentsLayout from './ContentsLayout';
-import { AntDesign } from '@expo/vector-icons';
+
 
 export default class MainContents extends Component {
 
@@ -62,17 +62,12 @@ export default class MainContents extends Component {
 
     return (
       <View>
-        <ContentsLayout title={'오늘의 친절 직원'} images={images} titleIcon={<AntDesign name={'heart'}  style={styles.titleIcon} size={iconSize} />} />
-        <ContentsLayout title={'이달의 친절 직원'} images={images} titleIcon={<AntDesign name={'calendar'} style={styles.titleIcon} size={iconSize} />}/>
-        <ContentsLayout title={'누적 친절 직원'} images={images} titleIcon={<AntDesign name={'calendar'} style={styles.titleIcon} size={iconSize} />}/>
-        <ContentsLayout title={'뭔가 더 넣고 싶당...'} images={images} titleIcon={<AntDesign name={'calendar'} style={styles.titleIcon} size={iconSize} />}/>
+        <ContentsLayout title={'청진식당'} images={images} />
+        <ContentsLayout title={'씨앗양식'} images={images} />
+        <ContentsLayout title={'용만이네 돈까스'} images={images} />
+        <ContentsLayout title={'마쯔무라'} images={images} />
+        <ContentsLayout title={'맥도날드'} images={images} />
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  titleIcon : {
-    color: 'white',
-  }
-});

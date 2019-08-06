@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight, Image, ScrollView } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
 
 export default class ContentsLayout extends Component {
   render() {
 
-    const { title, titleIcon, images } = this.props;
+    const { title, images } = this.props;
     
     return (
       <View style={styles.container}>
         <Text style={styles.titleText}>
-        {titleIcon} {title}
+          <FontAwesome name={'hashtag'} style={styles.titleIcon} size={20} /> {title}
         </Text>
         <View style={styles.scrollContainer}>
         <ScrollView
@@ -17,10 +18,9 @@ export default class ContentsLayout extends Component {
               pagingEnabled
               showsHorizontalScrollIndicator={false}>
               {images.map((image, index) => (
-                  <TouchableHighlight key={index}  onPress={()=>{alert(index)}}>
+                  <TouchableHighlight key={index} onPress={()=>{alert(index)}}>
                       <Image key={index} style={styles.image} source={image.source} />
                   </TouchableHighlight>
-              
               ))}
             </ScrollView>
         </View>
