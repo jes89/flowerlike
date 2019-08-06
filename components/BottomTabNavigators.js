@@ -6,7 +6,7 @@ import Profile from './Profile';
 import Contact from './Contact';
 import {createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import { Entypo } from '@expo/vector-icons';
-import { AntDesign, FontAwesome } from '@expo/vector-icons';
+import { AntDesign, FontAwesome, MaterialIcons } from '@expo/vector-icons';
 import { View } from 'react-native';
 
 const iconSize = 24;
@@ -56,7 +56,7 @@ export default BottomTabNavigator = createMaterialBottomTabNavigator({
     navigationOptions : {
       tabBarIcon: ({ tintColor }) => (
         <View>  
-           <AntDesign name={'contacts'} style={[{color: tintColor}]} size={iconSize} /> 
+           <MaterialIcons name={'contact-mail'} style={[{color: tintColor}]} size={iconSize} /> 
         </View>
       ),
     }     
@@ -64,7 +64,7 @@ export default BottomTabNavigator = createMaterialBottomTabNavigator({
 },{
   initialRouteName: "home",  
   labeled : false,
-  activeColor: '#f0edf6',  
-  inactiveColor: '#226557',  
-  barStyle: { backgroundColor: '#3BAD87' },  
+  activeColor: 'white',  
+  inactiveColor: 'gray',  
+  barStyle: { backgroundColor: 'black' },  
 });

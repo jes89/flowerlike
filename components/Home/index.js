@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
+import TopBanner from './TopBanner';
+import MainContents from './MainContents';
 
 export default class Home extends Component {
 
@@ -25,11 +27,17 @@ export default class Home extends Component {
 
         return (
             <Fragment>
-              <View style={styles.container}>
+            <ScrollView
+                
+                style={styles.container}>
                   {
-                      isLoading ? <Spinner visible={true} /> : <Text>home</Text>
+                      isLoading ? <Spinner visible={true} /> : 
+                      <View>
+                          <TopBanner></TopBanner>
+                          <MainContents></MainContents>
+                      </View>
                   }
-              </View>
+              </ScrollView>
             </Fragment>
         );
     }
@@ -38,6 +46,10 @@ export default class Home extends Component {
 const styles = StyleSheet.create({
     container : {
         width : '100%',
-        flex : 1
+        flex : 1,
+        backgroundColor: 'black'
     }
 });
+
+  
+  
