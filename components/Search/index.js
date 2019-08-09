@@ -1,57 +1,65 @@
-import React, { Component } from 'react';
-import { StyleSheet, View, ScrollView, Text, TouchableHighlight } from 'react-native';
-import Spinner from 'react-native-loading-spinner-overlay';
+import React, { Component  } from 'react';
+import { StyleSheet, View } from 'react-native';
 import { Searchbar } from 'react-native-paper';
-import { FontAwesome5 } from '@expo/vector-icons';
+import LocationSearch from './LocationSearch';
+import { ScrollView } from 'react-native-gesture-handler';
+import ContentsLayout from '../Contents/ContentsLayout';
+
 export default class Search extends Component {
     
     state = {
         isLoading : true,
         searchText : '',
+        locationText : '',
     }
 
-    updateSearch = searchText => {
+    updateLocationText = locationText => {
+        this.setState({ locationText });
+    };
+
+    updateSearchText = searchText => {
         this.setState({ searchText });
     };
 
     render() {
-        onLoadContents = () => {
-            this.setState({
-                isLoading: !this.state.isLoading
-            });
-        }
+        const images = [
+            {
+              source: {
+                uri: 'https://cdn.pixabay.com/photo/2017/05/19/07/34/teacup-2325722__340.jpg',
+              },
+            },
+            {
+              source: {
+                uri: 'https://cdn.pixabay.com/photo/2017/05/02/22/43/mushroom-2279558__340.jpg',
+              },
+            },
+            {
+              source: {
+                uri: 'https://cdn.pixabay.com/photo/2017/05/18/21/54/tower-bridge-2324875__340.jpg',
+              },
+            }];
 
-        const { isLoading, searchText } = this.state;
+        const { searchText } = this.state;
 
-        if(isLoading){
-            setTimeout(onLoadContents, 500);
-        }
-        
         return (
             <View style={styles.container}>
-                {
-                    isLoading ? 
-                    <Spinner visible={true} /> :    
-                    <View style={styles.asideContainer}>
-                        <Searchbar  style={styles.searchbar}
-                                    placeholder="Search"
-                                    onChangeText={this.updateSearch}
-                                    value={searchText} />
-                        <View style={styles.locationContainer}>
-                            <View style={styles.searchAside}>
-                                <FontAwesome5 name={'map-marker'}></FontAwesome5> 
-                                <Text style={styles.iconText}>내 위치</Text>
-                            </View>
-                            <View style={styles.searchAside}>
-                                <FontAwesome5 name={'map'}></FontAwesome5> 
-                                <Text style={styles.iconText}>지도에서 찾기</Text>
-                            </View>
-                        </View>
-                        <ScrollView>
-
-                        </ScrollView>
-                    </View>
-                }
+                 <Searchbar  style={styles.searchbar}
+                                placeholder="키워드"
+                                onChangeText={this.updateSearchText}
+                                value={searchText} />
+                <LocationSearch updateLocationText={this.updateLocationText.bind(this)}/>
+                <ScrollView>
+                    <ContentsLayout title={'꽃다운 000'} images={images} ></ContentsLayout>
+                    <ContentsLayout title={'꽃다운 001'} images={images} ></ContentsLayout>
+                    <ContentsLayout title={'꽃다운 002'} images={images} ></ContentsLayout>
+                    <ContentsLayout title={'꽃다운 003'} images={images} ></ContentsLayout>
+                    <ContentsLayout title={'꽃다운 004'} images={images} ></ContentsLayout>
+                    <ContentsLayout title={'꽃다운 005'} images={images} ></ContentsLayout>
+                    <ContentsLayout title={'꽃다운 006'} images={images} ></ContentsLayout>
+                    <ContentsLayout title={'꽃다운 007'} images={images} ></ContentsLayout>
+                    <ContentsLayout title={'꽃다운 008'} images={images} ></ContentsLayout>
+                    <ContentsLayout title={'꽃다운 009'} images={images} ></ContentsLayout>
+                </ScrollView>
             </View>
         );
     }
@@ -60,7 +68,6 @@ export default class Search extends Component {
 const styles = StyleSheet.create({
     container : {
         flex :1,
-        backgroundColor: 'black',
         padding : 20,
     },
     asideContainer : {
@@ -68,27 +75,8 @@ const styles = StyleSheet.create({
     },
     searchbar : {
         alignSelf : 'center',
+        marginBottom : 10,
     }, 
-    locationContainer : {
-        flexDirection : 'row',
-        width : '100%',
-        height : 50,
-        marginTop : 20,
-
-    },
-    searchAside : {
-        flexDirection : 'row',
-        backgroundColor : 'gray',
-        alignItems : 'center',
-        justifyContent: "center",
-        flex : 1,
-        borderWidth : 1,
-        borderColor : 'white',
-    },
-    iconText : {
-        marginLeft : 10,
-        
-    }
 });
 
   

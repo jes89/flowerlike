@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
         margin : 10,
     },
     titleText : {
-        color : 'white',
+        color : 'pink',
         fontSize : 20,
     },
     scrollContainer: {
