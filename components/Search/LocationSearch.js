@@ -59,7 +59,7 @@ export default class DefaultSearchMode extends Component {
                           :  <TouchableHighlight style={styles.searchAsideTouchableHighlight} onPress={this.findMyLocation}>
                                 <View style={styles.searchAside} >
                                     <FontAwesome5 name={'map'}></FontAwesome5> 
-                                    <Text style={styles.iconText}>{'위치 찾기'}</Text>
+                                    <Text style={styles.iconText}>{'위치 검색'}</Text>
                                 </View>
                             </TouchableHighlight> 
           }
@@ -74,6 +74,8 @@ const styles = StyleSheet.create({
     borderWidth : 1,
     borderColor : 'gray',
     backgroundColor : 'white',
+    borderRadius : 5,
+    marginBottom : 10,
   },
   searchAside : {
     flexDirection : 'row',
@@ -81,7 +83,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flex : 1,
   },
- 
   iconText : {
       marginLeft : 10,
   }

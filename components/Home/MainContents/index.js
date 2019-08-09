@@ -58,15 +58,13 @@ export default class MainContents extends Component {
           },
       },
     ];
-    const iconSize = 20;
-
+    
     return (
       <View>
         <ContentsLayout title={'오늘의 꽃다운'} images={images} />
         <ContentsLayout title={'이달의 꽃다운'} images={images} />
         <ContentsLayout title={'추천 꽃다운'} images={images} />
-        <ContentsLayout title={'마쯔무라'} images={images} />
-        <ContentsLayout title={'맥도날드'} images={images} />
+        <ContentsLayout title={'우수 꽃다운'} images={images} />
       </View>
     );
   }

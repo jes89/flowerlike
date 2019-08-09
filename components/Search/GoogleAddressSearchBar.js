@@ -33,14 +33,15 @@ export default class GoogleAddressSearchBar extends Component {
               textInputContainer: {
                 backgroundColor: 'rgba(0,0,0,0)',
                 borderTopWidth: 0,
-                borderBottomWidth:0
+                borderBottomWidth:0,
+                
               },
               textInput: {
                 marginLeft: 0,
                 marginRight: 0,
                 height: 38,
                 color: '#5d5d5d',
-                fontSize: 16
+                fontSize: 16,
               },
               predefinedPlacesDescription: {
                 color: '#1faadb'

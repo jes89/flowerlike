@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight, Image, ScrollView } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome, Entypo } from '@expo/vector-icons';
 
 export default class ContentsLayout extends Component {
   render() {
@@ -9,9 +9,12 @@ export default class ContentsLayout extends Component {
     
     return (
       <View style={styles.container}>
-        <Text style={styles.titleText}>
-          <FontAwesome name={'hashtag'} style={styles.titleIcon} size={20} /> {title}
-        </Text>
+        <View style={styles.titleContainer}>
+            <Text style={styles.titleText}> 
+              <FontAwesome name={'hashtag'} size={20} /> {title}
+            </Text>
+            <Entypo name={'dots-three-vertical'} size={20} style={{marginRight:10}} onPress={()=>{alert(2)}}/>
+        </View>
         <View style={styles.scrollContainer}>
         <ScrollView
               horizontal
@@ -30,20 +33,29 @@ export default class ContentsLayout extends Component {
 }
 
 const styles = StyleSheet.create({
-    container : {
-        margin : 10,
+    container: {
+        marginTop : 10,
+        borderColor: '#EAEAEA',
+    },
+    titleContainer: {
+      paddingVertical: 15,
+      paddingHorizontal: 10,
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center"
     },
     titleText : {
-        color : 'pink',
-        fontSize : 20,
+      color : '#121212',
+      fontSize : 16,
     },
     scrollContainer: {
+      borderWidth: 1,
+      borderColor: '#EAEAEA',
       height : 150,
     },
     image: {
       width : 200,
       height : 150,
-      marginTop : 20,
     },
   });
   

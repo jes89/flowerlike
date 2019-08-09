@@ -64,7 +64,7 @@ export default BottomTabNavigator = createMaterialBottomTabNavigator({
 },{
   initialRouteName: "home",  
   labeled : false,
-  activeColor: 'white',  
-  inactiveColor: 'gray',  
-  barStyle: { backgroundColor: 'black' },  
+  activeColor: '#121212',  
+  inactiveColor: '#5A5A5A',  
+  barStyle: { backgroundColor: '#F6F6F6' },  
 });
