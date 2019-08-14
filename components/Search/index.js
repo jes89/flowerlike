@@ -43,11 +43,13 @@ export default class Search extends Component {
 
         return (
             <View style={styles.container}>
-                 <Searchbar  style={styles.searchbar}
+                <View style={styles.searchContainer}>
+                    <Searchbar  style={styles.searchbar}
                                 placeholder="키워드"
                                 onChangeText={this.updateSearchText}
                                 value={searchText} />
-                <LocationSearch updateLocationText={this.updateLocationText.bind(this)}/>
+                    <LocationSearch updateLocationText={this.updateLocationText.bind(this)}/>
+                </View>
                 <ScrollView>
                     <ContentsLayout title={'꽃다운 000'} images={images} ></ContentsLayout>
                     <ContentsLayout title={'꽃다운 001'} images={images} ></ContentsLayout>
@@ -61,6 +63,7 @@ export default class Search extends Component {
                     <ContentsLayout title={'꽃다운 009'} images={images} ></ContentsLayout>
                 </ScrollView>
             </View>
+            
         );
     }
 }
@@ -68,6 +71,9 @@ export default class Search extends Component {
 const styles = StyleSheet.create({
     container : {
         flex :1,
+        backgroundColor: 'white'
+    },
+    searchContainer : {
         padding : 20,
     },
     asideContainer : {

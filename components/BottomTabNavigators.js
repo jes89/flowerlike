@@ -2,7 +2,7 @@ import React from 'react';
 import Home from './Home';
 import Search from './Search';
 import Like from './Like';
-import Profile from './Profile';
+import Profile from './Member/Profile';
 import Contact from './Contact';
 import {createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import { Entypo } from '@expo/vector-icons';

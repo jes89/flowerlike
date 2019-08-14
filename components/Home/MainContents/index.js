@@ -60,7 +60,7 @@ export default class MainContents extends Component {
     ];
     
     return (
-      <View>
+      <View style={{marginBottom:10}}>
         <ContentsLayout title={'오늘의 꽃다운'} images={images} />
         <ContentsLayout title={'이달의 꽃다운'} images={images} />
         <ContentsLayout title={'추천 꽃다운'} images={images} />

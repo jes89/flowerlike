@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "flowerlike",
-    "slug": "flowerlike",
+    "name": "꽃다운",
+    "slug": "꽃다운",
     "privacy": "public",
     "sdkVersion": "34.0.0",
     "platforms": [
@@ -11,9 +11,9 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/5d8f9b72ec2b4e0fbed25ada1d211586.jpg",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/5d8f9b72ec2b4e0fbed25ada1d211586.jpg",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

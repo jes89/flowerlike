@@ -1,19 +1,48 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight, Image, ScrollView } from 'react-native';
-import { FontAwesome, Entypo } from '@expo/vector-icons';
+import { FontAwesome, Entypo, Ionicons, FontAwesome5 } from '@expo/vector-icons';
+import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
+
+
+
 
 export default class ContentsLayout extends Component {
+
+  state = {
+    visible : false
+  }
+
+  _menu = null;
+
+  setMenuRef = ref => {
+    this._menu = ref;
+  };
+
+  hideMenu = () => {
+    this._menu.hide();
+  };
+
+  showMenu = () => {
+    this._menu.show();
+  };
+
+
   render() {
 
     const { title, images } = this.props;
-    
+
     return (
       <View style={styles.container}>
         <View style={styles.titleContainer}>
-            <Text style={styles.titleText}> 
+            <Text style={styles.titleText} onPress={() => {alert(1)}}> 
               <FontAwesome name={'hashtag'} size={20} /> {title}
             </Text>
-            <Entypo name={'dots-three-vertical'} size={20} style={{marginRight:10}} onPress={()=>{alert(2)}}/>
+            <Menu ref={this.setMenuRef}  button={ <Entypo name={'dots-three-vertical'} size={20} style={{marginRight:10}} onPress={this.showMenu}/>}>
+              <MenuItem onPress={this.hideMenu}>링크복사</MenuItem>
+              <MenuItem onPress={this.hideMenu}>알림설정</MenuItem>
+              <MenuItem onPress={this.hideMenu}>숨기기</MenuItem>
+              <MenuItem onPress={this.hideMenu}>신고</MenuItem>
+            </Menu>
         </View>
         <View style={styles.scrollContainer}>
         <ScrollView
@@ -27,6 +56,10 @@ export default class ContentsLayout extends Component {
               ))}
             </ScrollView>
         </View>
+        <View style={{flexDirection:'row', marginTop:10}}>
+          <FontAwesome5 name={'star'} size={25} style={styles.iconsStyle} color={'#EDD200'}/><Text style={{alignSelf:'center'}}>4.7(2034)</Text>
+          <Ionicons name={'md-heart'} size={25} style={styles.iconsStyle} color={'#FF4848'}/><Text style={{alignSelf:'center'}}>1,000</Text>
+        </View>
       </View>
     );
   }
@@ -36,6 +69,8 @@ const styles = StyleSheet.create({
     container: {
         marginTop : 10,
         borderColor: '#EAEAEA',
+        borderTopWidth: 1,
+
     },
     titleContainer: {
       paddingVertical: 15,
@@ -48,9 +83,12 @@ const styles = StyleSheet.create({
       color : '#121212',
       fontSize : 16,
     },
+    iconsStyle : {
+      alignSelf:'center',
+      marginLeft:10, 
+      marginRight:5
+    },
     scrollContainer: {
-      borderWidth: 1,
-      borderColor: '#EAEAEA',
       height : 150,
     },
     image: {
