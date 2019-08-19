@@ -26,17 +26,15 @@ export default class Home extends Component {
         }
 
         return (
-            <Fragment>
             <ScrollView style={styles.container}>
                   {
                       isLoading ? <Spinner visible={true} /> : 
                       <View>
                           <TopBanner></TopBanner>
-                          <MainContents></MainContents>
+                          <MainContents navigation={this.props.navigation}></MainContents>
                       </View>
                   }
               </ScrollView>
-            </Fragment>
         );
     }
 }

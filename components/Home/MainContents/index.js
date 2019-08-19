@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
-import ContentsLayout from '../../Contents/ContentsLayout';
+import ContentsListLayout from '../../Contents/ContentsListLayout';
 
 
 export default class MainContents extends Component {
@@ -61,10 +61,10 @@ export default class MainContents extends Component {
     
     return (
       <View style={{marginBottom:10}}>
-        <ContentsLayout title={'오늘의 꽃다운'} images={images} />
-        <ContentsLayout title={'이달의 꽃다운'} images={images} />
-        <ContentsLayout title={'추천 꽃다운'} images={images} />
-        <ContentsLayout title={'우수 꽃다운'} images={images} />
+        <ContentsListLayout title={'오늘의 꽃다운'} images={images} navigation={this.props.navigation}/>
+        <ContentsListLayout title={'이달의 꽃다운'} images={images} navigation={this.props.navigation}/>
+        <ContentsListLayout title={'추천 꽃다운'} images={images}  navigation={this.props.navigation}/>
+        <ContentsListLayout title={'우수 꽃다운'} images={images} navigation={this.props.navigation}/>
       </View>
     );
   }

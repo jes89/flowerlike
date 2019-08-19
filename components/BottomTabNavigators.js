@@ -2,17 +2,33 @@ import React from 'react';
 import Home from './Home';
 import Search from './Search';
 import Like from './Like';
-import Profile from './Member/Profile';
+import MyPage from './Member/MyPage';
 import Contact from './Contact';
+import ContentsView from './Contents/ContentsView';
 import {createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import { Entypo } from '@expo/vector-icons';
 import { AntDesign, FontAwesome, MaterialIcons } from '@expo/vector-icons';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
+import { createStackNavigator } from 'react-navigation';
 
 const iconSize = 24;
 
+const HomeStack = createStackNavigator({
+  main: Home,
+  contentsView: ContentsView,
+}, {
+  headerMode : 'none'
+});
+
+const ProfileStack = createStackNavigator({
+  myPage: MyPage,
+  profile: ContentsView,
+}, {
+  headerMode : 'none'
+});
+
 export default BottomTabNavigator = createMaterialBottomTabNavigator({
-  home: { screen : Home, 
+  home: { screen : HomeStack, 
     navigationOptions : {
       tabBarIcon: ({ tintColor }) => (
         <View>  
@@ -42,11 +58,11 @@ export default BottomTabNavigator = createMaterialBottomTabNavigator({
     }     
   },
   profile: { 
-    screen : Profile , 
+    screen : ProfileStack , 
     navigationOptions : {
       tabBarIcon: ({ tintColor }) => (
         <View>  
-           <AntDesign name={'user'}  style={[{color: tintColor}]} size={iconSize} /> 
+           <FontAwesome name={'user'}  style={[{color: tintColor}]} size={iconSize} /> 
         </View>
       ),
     }     
@@ -62,9 +78,10 @@ export default BottomTabNavigator = createMaterialBottomTabNavigator({
     }     
   },
 },{
-  initialRouteName: "home",  
+  // initialRouteName: "home",  
+  initialRouteName: "profile",  
   labeled : false,
-  activeColor: '#121212',  
+  activeColor: '#5A5A5A',  
   inactiveColor: '#5A5A5A',  
   barStyle: { backgroundColor: '#F6F6F6' },  
 });
