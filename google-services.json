@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:320146660045:android:0a8a31b128d04c77",
+        "mobilesdk_app_id": "1:320146660045:android:f438eb8e570479da",
         "android_client_info": {
-          "package_name": "com.bacon.expo.googlesignin"
+          "package_name": "example.expo.googlesignin"
         }
       },
       "oauth_client": [
@@ -32,10 +32,10 @@
               "client_type": 3
             },
             {
-              "client_id": "320146660045-fpkafd6j4ndb2aok4np22c2d00vcfdlk.apps.googleusercontent.com",
+              "client_id": "320146660045-sak02defhfeeshgghao4tind8u5qdahi.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.bacon.expo.googlesignin"
+                "bundle_id": "example.expo.googlesignin"
               }
             }
           ]

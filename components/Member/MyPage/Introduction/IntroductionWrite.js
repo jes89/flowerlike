@@ -1,34 +1,35 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, BackHandler, Alert } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 export default class IntroductionWrite extends Component {
 
-    _didFocusSubscription;
-    _willBlurSubscription;
+
     
     constructor(props) {
-      super(props);
-      this.state = { 
-        originText : '안녕하세요~ 잘 부탁드려요! \n한국마사회에서 5년째 근무 중인 정의섭입니다.\n토,일 9시~6시 근무합니다\n먹이주면 좋아해요~\nhhh',
-        text: '안녕하세요~ 잘 부탁드려요! \n한국마사회에서 5년째 근무 중인 정의섭입니다.\n토,일 9시~6시 근무합니다\n먹이주면 좋아해요~\nhhh'
-    };
-      this._didFocusSubscription = props.navigation.addListener('didFocus', payload =>
-        BackHandler.addEventListener('hardwareBackPress', this.onBackButtonPress)
-      );
+        super(props);
+        this._didFocusSubscription;
+        this._willBlurSubscription;
+        this.state = { 
+            originText : '안녕하세요~ 잘 부탁드려요! \n한국마사회에서 5년째 근무 중인 정의섭입니다.\n토,일 9시~6시 근무합니다\n먹이주면 좋아해요~\nhhh',
+            text: '안녕하세요~ 잘 부탁드려요! \n한국마사회에서 5년째 근무 중인 정의섭입니다.\n토,일 9시~6시 근무합니다\n먹이주면 좋아해요~\nhhh'
+        };
+        this._didFocusSubscription = props.navigation.addListener('didFocus', payload =>
+            BackHandler.addEventListener('hardwareBackPress', this.onBackButtonPressAndroid)
+        );
     }
   
     componentDidMount() {
-      this._willBlurSubscription = this.props.navigation.addListener('willBlur', payload =>
-        BackHandler.removeEventListener('hardwareBackPress', this.onBackButtonPress)
-      );
+        this._willBlurSubscription = this.props.navigation.addListener('willBlur', payload =>
+            BackHandler.removeEventListener('hardwareBackPress', this.onBackButtonPressAndroid)
+        );
     }
   
     onBackButtonPressAndroid = () => {
         const { originText , text } = this.state;
-
-        if(originText === text){
-            return false;
-        } else{
+        if (originText === text){
+            this.props.navigation.goBack()
+        } else {
             Alert.alert(
                 '자기소개',
                 '정말 나가시겠습니까?',
@@ -41,11 +42,13 @@ export default class IntroductionWrite extends Component {
                 ],
                 { cancelable: false }
             );
-            return true;
         }
+        return true;
     };
 
-   
+    saveIntroduction = () => {
+        this.props.navigation.goBack();
+    }
   
     componentWillUnmount() {
       this._didFocusSubscription && this._didFocusSubscription.remove();
@@ -67,8 +70,11 @@ export default class IntroductionWrite extends Component {
                     borderColor: '#F6F6F6',
                     borderBottomWidth: 2, }}>
                     <View style={{flexDirection:'row', justifyContent: 'space-between'}}>
-                        <Text style={{fontSize:20, fontWeight:'bold'}}>{'자기소개'}</Text>
-                        <TouchableOpacity onPress={()=>{}}>
+                        <TouchableOpacity style={{flexDirection:'row'}} onPress={this.onBackButtonPressAndroid}>
+                            <Ionicons name={'ios-arrow-back'} color={'black'} style={{alignSelf:'center', marginRight: 5}} size={20} />
+                            <Text style={{fontSize:20, fontWeight:'bold'}}>{'자기소개'}</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{flexDirection:'row'}} onPress={this.saveIntroduction}>
                             <Text style={{fontSize:20, fontWeight:'bold'}}>{'확인'}</Text>
                         </TouchableOpacity>
                     </View>
