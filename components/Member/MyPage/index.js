@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, FlatList, Text, TouchableOpacity } from 'react-native';
 import MyPageUserInfo from './MyPageUserInfo';
-import Introduction from './Introduction';
+import IntroductionView from './Introduction/IntroductionView';
 import MenuTab from './MenuTab';
 import { AntDesign, Feather, FontAwesome5 } from '@expo/vector-icons';
 
@@ -13,11 +13,11 @@ const menuList = [
 
 ]
 
-
 export default class MyPage extends Component {
     
 
     render() {
+
         return (
             <View style={styles.container}>
                 <View style={{
@@ -28,8 +28,8 @@ export default class MyPage extends Component {
                     borderBottomWidth: 2, }}>
                     <Text style={{fontSize:20, fontWeight:'bold'}}>{'프로필'}</Text>
                 </View>
-                <MyPageUserInfo />
-                <Introduction />
+                <MyPageUserInfo navigation={this.props.navigation}/>
+                <IntroductionView navigation={this.props.navigation} />
                 <View style={styles.divider} />
                 <FlatList   data={menuList}
                             renderItem={({item}) => <MenuTab item={item}></MenuTab>} />

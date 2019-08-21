@@ -7,7 +7,7 @@ export default class MyPageUserInfo extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.profileImgContainer}>
-                    <TouchableOpacity onPress={()=>{}}>
+                    <TouchableOpacity onPress={()=>{ this.props.navigation.navigate('profile')}}>
                         <Image  source={{uri:'http://www.changetv.kr/upload/ProfileImg/2019-04-29060012_18.png'}}
                                 style={styles.profileImg} />
                     </TouchableOpacity>

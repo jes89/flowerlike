@@ -11,7 +11,6 @@ export default class Home extends Component {
       }
 
     render() {
-        const { navigation } = this.props;
 
         onLoadContents = () => {
             this.setState({

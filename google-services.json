@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "320146660045",
+    "firebase_url": "https://flowerlike-1565144344010.firebaseio.com",
+    "project_id": "flowerlike-1565144344010",
+    "storage_bucket": "flowerlike-1565144344010.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:320146660045:android:0a8a31b128d04c77",
+        "android_client_info": {
+          "package_name": "com.bacon.expo.googlesignin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "320146660045-p1d9gemc2qbg9vb2sdha8m13eq1kegd0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZlYYOg7CZoNLYTjfFJ3pyItDrONxoHqQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "320146660045-p1d9gemc2qbg9vb2sdha8m13eq1kegd0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "320146660045-fpkafd6j4ndb2aok4np22c2d00vcfdlk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.bacon.expo.googlesignin"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

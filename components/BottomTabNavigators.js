@@ -5,6 +5,8 @@ import Like from './Like';
 import MyPage from './Member/MyPage';
 import Contact from './Contact';
 import ContentsView from './Contents/ContentsView';
+import Profile from './Member/MyPage/Profile';
+import IntroductionWrite from './Member/MyPage/Introduction/IntroductionWrite';
 import {createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import { Entypo } from '@expo/vector-icons';
 import { AntDesign, FontAwesome, MaterialIcons } from '@expo/vector-icons';
@@ -20,9 +22,10 @@ const HomeStack = createStackNavigator({
   headerMode : 'none'
 });
 
-const ProfileStack = createStackNavigator({
+const MyPageStack = createStackNavigator({
   myPage: MyPage,
-  profile: ContentsView,
+  introductionWrite: IntroductionWrite,
+  profile : Profile
 }, {
   headerMode : 'none'
 });
@@ -58,7 +61,7 @@ export default BottomTabNavigator = createMaterialBottomTabNavigator({
     }     
   },
   profile: { 
-    screen : ProfileStack , 
+    screen : MyPageStack , 
     navigationOptions : {
       tabBarIcon: ({ tintColor }) => (
         <View>  

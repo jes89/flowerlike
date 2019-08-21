@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
-export default class Introduction extends Component {
+export default class IntroductionView extends Component {
     
     render() {
+
         return (
-            <TouchableOpacity style={styles.container} onPress={()=>{}}>
+            <TouchableOpacity style={styles.container} onPress={()=>{
+                this.props.navigation.navigate('introductionWrite');
+            }}>
                 <View >
                     <View>
                         <Text style={{fontWeight:'bold', fontSize: 16}}>{'자기소개'}</Text>

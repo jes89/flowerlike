@@ -23,8 +23,17 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "android":{
+      "package": "com.bacon.expo.googlesignin",
+      "googleServicesFile" : "./google-services.json"
+    },
     "ios": {
-      "supportsTablet": true
+      "bundleIdentifier": "com.bacon.expo.googlesignin",
+      "config" : {
+        "googleSignIn" : {
+          "reservedClientId" : "com.googleusercontent.apps.320146660045-fpkafd6j4ndb2aok4np22c2d00vcfdlk"
+        }
+      }
     }
   }
 }
