@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, BackHandler, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import HeaderLayout from '../../../HeaderLayout';
+
 
 export default class IntroductionWrite extends Component {
 
@@ -62,39 +64,19 @@ export default class IntroductionWrite extends Component {
 
         return (
             <View style={styles.container}>
-                <View style={{
-                    justifyContent:'center', 
-                    height:50, 
-                    paddingLeft:20,
-                    paddingRight:20,
-                    borderColor: '#F6F6F6',
-                    borderBottomWidth: 2, }}>
-                    <View style={{flexDirection:'row', justifyContent: 'space-between'}}>
-                        <TouchableOpacity style={{flexDirection:'row'}} onPress={this.onBackButtonPressAndroid}>
-                            <Ionicons name={'ios-arrow-back'} color={'black'} style={{alignSelf:'center', marginRight: 5}} size={20} />
-                            <Text style={{fontSize:20, fontWeight:'bold'}}>{'자기소개'}</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={{flexDirection:'row'}} onPress={this.saveIntroduction}>
-                            <Text style={{fontSize:20, fontWeight:'bold'}}>{'확인'}</Text>
-                        </TouchableOpacity>
-                    </View>
-                    
-                </View>
-                <View style={styles.divider} />
+                <HeaderLayout   title={'자기소개'} 
+                                isRightSideButton={true} 
+                                rightSideButtonText={'확인'} 
+                                isHistoryBackButton={true} 
+                                leftSideButtonEvent={this.onBackButtonPressAndroid.bind(this)} 
+                                rightSideButtonEvent={this.saveIntroduction.bind(this)}  />
                 <View style={{padding:15}}>
-                    <Text style={{alignSelf:'flex-end'}}>{`${text.length} / 2000`}</Text>
+                    <Text style={styles.currentTextLenWarp}>{`${text.length} / 2000`}</Text>
                     <TextInput  multiline = {true}
                                 value={text}
                                 onChangeText={text => this.setState({ text })}
-                                style={{
-                                    padding : 10,
-                                    height: 200,
-                                    borderColor: "gray",
-                                    borderWidth: 1
-                                }}
-                    />
+                                style={styles.introductionTextInput} />
                 </View>
-               
                 <View style={styles.backgroundDrawing} />
             </View>
         );
@@ -105,18 +87,9 @@ const styles = StyleSheet.create({
     container : {
         flex: 1,
     },
-    divider : {
-        width: '100%', 
-        height: 10, 
-        backgroundColor:'#F6F6F6', 
-        shadowColor: "#F6F6F6",
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
-        shadowOpacity: 0.22,
-        shadowRadius: 1.22,
-        elevation: 2,
+    currentTextLenWarp : {
+        alignSelf:'flex-end',
+        marginBottom: 10,
     },
     backgroundDrawing : {
         width: '100%', 
@@ -130,5 +103,11 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.22,
         shadowRadius: 1.22,
         elevation: 2,
+    },
+    introductionTextInput : {
+        padding : 10,
+        height: 200,
+        borderColor: "gray",
+        borderWidth: 1
     }
 });

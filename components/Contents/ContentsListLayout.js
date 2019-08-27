@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight, Image, ScrollView } from 'react-native';
 import { FontAwesome, Entypo, Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
+import LikeAndStarInfo from './LikeAndStarInfo';
 
 export default class ContentsListLayout extends Component {
 
@@ -53,10 +54,7 @@ export default class ContentsListLayout extends Component {
                   ))}
                 </ScrollView>
             </View>
-            <View style={{flexDirection:'row', marginTop:10}}>
-              <FontAwesome5 name={'star'} size={25} style={styles.iconsStyle} color={'#EDD200'}/><Text style={{alignSelf:'center'}}>4.7(2034)</Text>
-              <Ionicons name={'md-heart'} size={25} style={styles.iconsStyle} color={'#FF4848'}/><Text style={{alignSelf:'center'}}>1,000</Text>
-            </View>
+            <LikeAndStarInfo></LikeAndStarInfo>
         </View>
     );
   }

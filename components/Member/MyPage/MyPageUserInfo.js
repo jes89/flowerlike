@@ -10,6 +10,7 @@ export default class MyPageUserInfo extends Component {
                     <TouchableOpacity onPress={()=>{ this.props.navigation.navigate('profile')}}>
                         <Image  source={{uri:'http://www.changetv.kr/upload/ProfileImg/2019-04-29060012_18.png'}}
                                 style={styles.profileImg} />
+                        <Text style={{textAlign:'center', marginTop : 5}}>{'라이언'}</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.userLikeAndStarPoint}>

@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import Constants from 'expo-constants';
 import { createAppContainer } from 'react-navigation';
-import { View, StyleSheet, AsyncStorage } from 'react-native';
+import { View, StyleSheet, AsyncStorage, Platform } from 'react-native';
 import BottomTabNavigators from './components/BottomTabNavigators';
 import firebase from 'firebase';
 import firebaseConfig from './config/firebaseConfig';
@@ -21,6 +21,7 @@ export default class App extends Component {
     uid : null ,
     isLoginCheckFinished : false,
   }
+
 
   componentDidMount(){
 
@@ -43,6 +44,10 @@ export default class App extends Component {
   getUID = async () => {
     
     let uid = await AsyncStorage.getItem('uid');
+
+    if(Platform.OS === 'ios' && uid == null ){
+      uid = 'iso_dev_user';
+    }
 
     this.setState({uid, isLoginCheckFinished : true});
   }

@@ -81,8 +81,7 @@ export default BottomTabNavigator = createMaterialBottomTabNavigator({
     }     
   },
 },{
-  // initialRouteName: "home",  
-  initialRouteName: "profile",  
+  initialRouteName: "home",  
   labeled : false,
   activeColor: '#5A5A5A',  
   inactiveColor: '#5A5A5A',  
