@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight, Image, ScrollView } from 'react-native';
-import { FontAwesome, Entypo, Ionicons, FontAwesome5 } from '@expo/vector-icons';
-import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
+import { FontAwesome, Entypo } from '@expo/vector-icons';
+import Menu, { MenuItem } from 'react-native-material-menu';
 import LikeAndStarInfo from './LikeAndStarInfo';
 
 export default class ContentsListLayout extends Component {
@@ -43,7 +43,7 @@ export default class ContentsListLayout extends Component {
                 </Menu>
             </View>
             <View style={styles.scrollContainer}>
-            <ScrollView
+                <ScrollView
                   horizontal
                   pagingEnabled
                   showsHorizontalScrollIndicator={false}>

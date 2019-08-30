@@ -12,17 +12,19 @@ export default class HeaderLayout extends Component {
         }
     }
 
-    renderRightSideButton(isRightSideButton, rightSideButtonText, rightSideButtonEvent){
+    renderRightSideButton(isRightSideButton, rightSideButton, rightSideButtonEvent){
         if(isRightSideButton){
             return  <TouchableOpacity style={styles.rightAside} onPress={rightSideButtonEvent}>
-                        <Text style={styles.headerFont}>{rightSideButtonText}</Text>
+                        {
+                            typeof(rightSideButton) === 'string' ? <Text style={styles.headerFont}>{rightSideButton}</Text> : rightSideButton
+                        }
                     </TouchableOpacity>
         }
     }
 
     render() {
 
-        const { title, isRightSideButton, rightSideButtonText, isHistoryBackButton, renderHistoryBack, leftSideButtonEvent, rightSideButtonEvent } = this.props;
+        const { title, isRightSideButton, rightSideButton, isHistoryBackButton, renderHistoryBack, leftSideButtonEvent, rightSideButtonEvent } = this.props;
 
         return (
             <View style={styles.container}>
@@ -31,8 +33,8 @@ export default class HeaderLayout extends Component {
                         {this.renderHistoryBack(isHistoryBackButton, renderHistoryBack)}
                         <Text style={styles.headerFont}>{title}</Text>
                     </TouchableOpacity>
-                    {this.renderRightSideButton(isRightSideButton, rightSideButtonText, rightSideButtonEvent)}
                 </View>
+                {this.renderRightSideButton(isRightSideButton, rightSideButton, rightSideButtonEvent)}
             </View>
             
         );
@@ -42,21 +44,25 @@ export default class HeaderLayout extends Component {
 const styles = StyleSheet.create({
     container : {
         justifyContent:'center', 
+        alignItems: 'center',
         height:50, 
         paddingLeft:20,
         paddingRight:20,
         borderColor: '#F6F6F6',
         borderBottomWidth: 2,
-    },
-    leftAside : {
         flexDirection:'row',
         justifyContent: 'space-between'
     },
+    leftAside : {
+        // flexDirection:'row',
+    },
     rightAside : {
-        flexDirection:'row',
+        // flexDirection:'row',
+        // justifyContent: 'center'
     },
     leftButtonWrap: {
-        flexDirection:'row'
+        flexDirection:'row',
+        justifyContent: 'center',
     },
     historyBackButton: {
         alignSelf:'center', 
@@ -64,6 +70,6 @@ const styles = StyleSheet.create({
     },
     headerFont : {
         fontSize:20, 
-        fontWeight:'bold'
+        fontWeight:'bold',
     }
 });

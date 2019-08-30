@@ -17,7 +17,7 @@ export default class Profile extends Component {
             <View style={styles.container}>
                 <HeaderLayout   title={'프로필'} 
                                 isRightSideButton={true} 
-                                rightSideButtonText={'확인'} 
+                                rightSideButton={'확인'} 
                                 isHistoryBackButton={true} 
                                 leftSideButtonEvent={()=>{this.props.navigation.goBack()}} 
                                 rightSideButtonEvent={()=>{}}  />

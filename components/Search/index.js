@@ -1,5 +1,5 @@
 import React, { Component  } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Button } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 import LocationSearch from './LocationSearch';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -40,6 +40,7 @@ export default class Search extends Component {
             }];
 
         const { searchText } = this.state;
+        const { navigation } = this.props;
 
         return (
             <View style={styles.container}>
@@ -51,16 +52,16 @@ export default class Search extends Component {
                     <LocationSearch updateLocationText={this.updateLocationText.bind(this)}/>
                 </View>
                 <ScrollView>
-                    <ContentsListLayout title={'꽃다운 000'} images={images} />
-                    <ContentsListLayout title={'꽃다운 001'} images={images} />
-                    <ContentsListLayout title={'꽃다운 002'} images={images} />
-                    <ContentsListLayout title={'꽃다운 003'} images={images} />
-                    <ContentsListLayout title={'꽃다운 004'} images={images} />
-                    <ContentsListLayout title={'꽃다운 005'} images={images} />
-                    <ContentsListLayout title={'꽃다운 006'} images={images} />
-                    <ContentsListLayout title={'꽃다운 007'} images={images} />
-                    <ContentsListLayout title={'꽃다운 008'} images={images} />
-                    <ContentsListLayout title={'꽃다운 009'} images={images} />
+                    <ContentsListLayout title={'꽃다운 000'} images={images} navigation={navigation} />
+                    <ContentsListLayout title={'꽃다운 001'} images={images} navigation={navigation} />
+                    <ContentsListLayout title={'꽃다운 002'} images={images} navigation={navigation} />
+                    <ContentsListLayout title={'꽃다운 003'} images={images} navigation={navigation} />
+                    <ContentsListLayout title={'꽃다운 004'} images={images} navigation={navigation} />
+                    <ContentsListLayout title={'꽃다운 005'} images={images} navigation={navigation} />
+                    <ContentsListLayout title={'꽃다운 006'} images={images} navigation={navigation} />
+                    <ContentsListLayout title={'꽃다운 007'} images={images} navigation={navigation} />
+                    <ContentsListLayout title={'꽃다운 008'} images={images} navigation={navigation} />
+                    <ContentsListLayout title={'꽃다운 009'} images={images} navigation={navigation} />
                 </ScrollView>
             </View>
             

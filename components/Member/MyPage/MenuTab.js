@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, AsyncStorage } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 
 export default class MenuTab extends Component {
@@ -11,7 +11,10 @@ export default class MenuTab extends Component {
         const { item } = this.props;
 
         return (
-            <TouchableOpacity style={styles.container} onPress={()=>{}}>
+            <TouchableOpacity style={styles.container} onPress={()=>{
+                AsyncStorage.removeItem('uid');
+                AsyncStorage.removeItem('email');
+            }}>
                 <View style={{flexDirection:'row', flex:1, alignItems:'center'}} >
                     <View style={{flexDirection:'row', flex:1, alignItems:'center'}}>
                         {item.icon}

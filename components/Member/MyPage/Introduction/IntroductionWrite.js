@@ -66,7 +66,7 @@ export default class IntroductionWrite extends Component {
             <View style={styles.container}>
                 <HeaderLayout   title={'자기소개'} 
                                 isRightSideButton={true} 
-                                rightSideButtonText={'확인'} 
+                                rightSideButton={'확인'} 
                                 isHistoryBackButton={true} 
                                 leftSideButtonEvent={this.onBackButtonPressAndroid.bind(this)} 
                                 rightSideButtonEvent={this.saveIntroduction.bind(this)}  />

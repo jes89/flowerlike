@@ -11,10 +11,11 @@ const menuList = [
     { key : 'bookMark' , title: '별점관리', icon :  <FontAwesome5 name={'star'} color={'#F5E107'} size={25} style={{width:30}} /> },
     { key : 'star' , title: '매장관리', icon :  <FontAwesome5 name={'building'} color={'#4374D9'} size={25} style={{width:30}} /> },
     { key : 'enterprise' , title: '설정', icon :  <AntDesign name={'setting'} color={'#0BC904'} size={25}  style={{width:30}}/> },
-
 ]
 
 export default class MyPage extends Component {
+    
+
     
 
     render() {
@@ -23,7 +24,7 @@ export default class MyPage extends Component {
             <View style={styles.container}>
                 <HeaderLayout   title={'프로필'} 
                                 isRightSideButton={false} 
-                                rightSideButtonText={''} 
+                                rightSideButton={''} 
                                 isHistoryBackButton={false} 
                                 leftSideButtonEvent={()=>{}} 
                                 rightSideButtonEvent={()=>{}}  />
@@ -32,6 +33,7 @@ export default class MyPage extends Component {
                 <View style={styles.divider} />
                 <FlatList   data={menuList}
                             renderItem={({item}) => <MenuTab item={item}></MenuTab>} />
+                            
             </View>
         );
     }

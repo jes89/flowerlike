@@ -39,17 +39,17 @@ export default class ContentsView extends Component {
     return (
       <View style={styles.container}>
         <HeaderLayout   title={'쉑쉑버거'} 
-                        isRightSideButton={false} 
-                        rightSideButtonText={''} 
+                        isRightSideButton={true} 
+                        rightSideButton={<FontAwesome5 name={'share-square'} size={ICON_SIZE}></FontAwesome5>}
                         isHistoryBackButton={true} 
                         leftSideButtonEvent={()=>{this.props.navigation.goBack()}} 
-                        rightSideButtonEvent={{}}  />
+                        rightSideButtonEvent={()=>{}}  />
         <ScrollView>
           <Image  source={{uri:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCMBQLLW69nZ3P9ks4ndM_OEaMmWeXM10loSVLOocHLCdxSb2H'}}
                   style={styles.enterpriseImage} />
           <LikeAndStarInfo/>
           <View style={styles.divider}></View>
-          <MenuTab updateActiveTab={this.updateActiveTab.bind(this)} />
+          <MenuTab updateActiveTab={this.updateActiveTab.bind(this)} moveToEmployeeList={()=>{this.props.navigation.navigate('employeeList')}} />
           {this.renderContents()}
         </ScrollView>
       </View>

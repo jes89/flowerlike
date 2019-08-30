@@ -5,7 +5,7 @@ import { Entypo, FontAwesome5, AntDesign, MaterialCommunityIcons } from '@expo/v
 const ICON_SIZE = 25;
 
 
-export default MenuTab = ({updateActiveTab}) => {
+export default MenuTab = ({updateActiveTab, moveToEmployeeList}) => {
 
     return ( <View style={styles.menuContainer}>
                 <TouchableOpacity style={styles.menuWithText} onPress={()=> {updateActiveTab('intro')}}>
@@ -20,22 +20,10 @@ export default MenuTab = ({updateActiveTab}) => {
                     <Text>{'위치'}</Text>
                 </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.menuWithText} onPress={()=> {}}>
+                <TouchableOpacity style={styles.menuWithText} onPress={moveToEmployeeList}>
                 <View style={styles.menu}>
                     <AntDesign name={'team'} size={ICON_SIZE} />
                     <Text>{'직원'}</Text>
-                </View>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.menuWithText} onPress={()=> {}}>
-                <View style={styles.menu}>
-                    <MaterialCommunityIcons name={'cellphone-message'} size={ICON_SIZE} />
-                    <Text>{'푸쉬관리'}</Text>
-                </View>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.menuWithText} onPress={()=> {}}>
-                <View style={styles.menu}>
-                    <FontAwesome5 name={'chalkboard-teacher'} size={ICON_SIZE} />
-                    <Text>{'매장관리'}</Text>
                 </View>
                 </TouchableOpacity>
             </View>)

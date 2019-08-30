@@ -5,6 +5,7 @@ import Like from './Like';
 import MyPage from './Member/MyPage';
 import Contact from './Contact';
 import ContentsView from './Contents/ContentsView';
+import EmployeeList from './Contents/Employee/EmployeeList';
 import Profile from './Member/MyPage/Profile';
 import IntroductionWrite from './Member/MyPage/Introduction/IntroductionWrite';
 import {createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
@@ -18,6 +19,7 @@ const iconSize = 24;
 const HomeStack = createStackNavigator({
   main: Home,
   contentsView: ContentsView,
+  employeeList: EmployeeList,
 }, {
   headerMode : 'none'
 });
@@ -30,6 +32,15 @@ const MyPageStack = createStackNavigator({
   headerMode : 'none'
 });
 
+const SearchStack = createStackNavigator({
+  search: Search,
+  contentsView: ContentsView,
+  employeeList: EmployeeList,
+}, {
+  headerMode : 'none'
+});
+
+
 export default BottomTabNavigator = createMaterialBottomTabNavigator({
   home: { screen : HomeStack, 
     navigationOptions : {
@@ -41,11 +52,11 @@ export default BottomTabNavigator = createMaterialBottomTabNavigator({
     }     
   },
   search: { 
-    screen : Search, 
+    screen : SearchStack, 
     navigationOptions : {
       tabBarIcon: ({ tintColor }) => (
         <View>  
-          <FontAwesome name={'search'}  style={[{color: tintColor}]} size={iconSize} /> 
+          <FontAwesome name={'search'} style={[{color: tintColor}]} size={iconSize} /> 
         </View>
       ),
     }     
@@ -55,7 +66,7 @@ export default BottomTabNavigator = createMaterialBottomTabNavigator({
     navigationOptions : {
       tabBarIcon: ({ tintColor }) => (
         <View>  
-          <AntDesign name={'heart'}   style={[{color: tintColor}]} size={iconSize} /> 
+          <AntDesign name={'heart'} style={[{color: tintColor}]} size={iconSize} /> 
         </View>
       ),
     }     
@@ -65,7 +76,7 @@ export default BottomTabNavigator = createMaterialBottomTabNavigator({
     navigationOptions : {
       tabBarIcon: ({ tintColor }) => (
         <View>  
-           <FontAwesome name={'user'}  style={[{color: tintColor}]} size={iconSize} /> 
+           <FontAwesome name={'user'} style={[{color: tintColor}]} size={iconSize} /> 
         </View>
       ),
     }     
