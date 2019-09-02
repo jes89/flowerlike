@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "apollo-client-preset": "^1.0.8",
     "expo": "^34.0.4",
     "expo-camera": "~5.0.1",
     "expo-cli": "^3.0.0",
@@ -20,6 +21,7 @@
     "firebase": "^6.3.5",
     "install": "^0.13.0",
     "react": "16.8.3",
+    "react-apollo": "^3.0.1",
     "react-dom": "^16.8.6",
     "react-native": "https://github.com/expo/react-native/archive/sdk-34.0.0.tar.gz",
     "react-native-android-location-enabler": "^1.2.0",

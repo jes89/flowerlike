@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Platform, AsyncStorage } from 'react-native';
 import * as Google from 'expo-google-app-auth';
 import GoogleLogin from './GoogleLogin';
 import SignUpForm from './SignUpForm';
@@ -10,15 +10,6 @@ import { googleLogin, increment } from '../../../redux/actions';
 
 class LoginScreen extends Component {
 
-  state = {
-    uid: null,
-    email: null,
-    ninkNm : null, 
-    isServiceAgree: false,
-    isPrivacyAgree : false,
-  }
-  
-
   signInWithGoogleAsync = async () => {
     
     const { type, accessToken, refreshToken, idToken ,  user } = await Google.logInAsync({
@@ -27,40 +18,28 @@ class LoginScreen extends Component {
       scopes: ['email'],
     });
     if (type !== 'success') { return; }
-
+    
+    const token = await AsyncStorage.getItem('token');
+    const device = Platform.OS;
     this.props.handleGoogleLogin({
         uid: user.id,
         email: user.email,
-        ninkNm: user.name
+        nickNm: user.name,
+        token,
+        device
     });
-
-    this.setState({
-        uid: user.id,
-        email: user.email,
-        ninkNm: user.name
-    });
-
-  }
-
-  agreePolicy = (isServiceAgree , isPrivacyAgree, isLocationAgree) => {
-    this.setState({
-      isServiceAgree , 
-      isPrivacyAgree , 
-      isLocationAgree
-    })
   }
 
   getSignup = () =>{
     
-    const { isServiceAgree, isPrivacyAgree } = this.state;
-    const { setGlobalUser } = this.props;
+    const { isServiceAgree, isPrivacyAgree } = this.props.sUser;
 
-    return isServiceAgree && isPrivacyAgree ? <SignUpForm setGlobalUser={setGlobalUser} userInfo={this.state} /> : <PolicyList agreePolicy={this.agreePolicy.bind(this)} />
+    return isServiceAgree && isPrivacyAgree ? <SignUpForm setGlobalUser={this.props.setGlobalUser} /> : <PolicyList />
   } 
 
   getLoginLayout = () => {
 
-    let { uid } = this.state;
+    const { uid } = this.props.sUser;
 
     if(uid){
         return  this.getSignup();

@@ -1,35 +1,62 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Image, TouchableOpacity, ScrollView, TextInput, AsyncStorage} from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity, TextInput, AsyncStorage, Alert} from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
-import { FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 import { SegmentedControls } from 'react-native-radio-buttons'
+import { connect } from 'react-redux';
+import { signUp } from '../../../redux/actions';
+import gql from 'graphql-tag';
+import { Mutation } from 'react-apollo';
 
-export default class SignUpForm extends Component {
+const SAVE_USER = gql`
+      mutation saveUser($user: SaveUserInput){
+        saveUser(user:$user){
+          userId
+          nickNm
+          email
+          token
+          device
+          profile
+        }
+      }
+`;
+
+const BLUE = "#428AF8";
+const LIGHT_GRAY = "#D3D3D3";
+
+class SignUpForm extends Component {
 
   state = {
-    uid: null,
     email: null,
-    ninkNm : null,
+    nickNm : null,
     profileImage: null,
-    token : null,
-    type: null,
-    device: null,
-    intro: null,
     selectedCustomSegment :{ label:'개인', value: 'P' },
+    isFocused: false,
   }
+
+  handleFocus = event => {
+    this.setState({ isFocused: true });
+    if (this.props.onFocus) {
+      this.props.onFocus(event);
+    }
+  };
+
+  handleBlur = event => {
+    this.setState({ isFocused: false });
+    if (this.props.onBlur) {
+      this.props.onBlur(event);
+    }
+  };
 
   componentWillMount() {
 
-    const { uid, email, ninkNm, isServiceAgree , isPrivacyAgree  } = this.props.userInfo;
+    const { email, nickNm } = this.props.sUser;
 
     this.setState({
-      uid, 
       email,
-      ninkNm,
-      isServiceAgree,
-      isPrivacyAgree,
+      nickNm,
     })
   }
 
@@ -51,97 +78,115 @@ export default class SignUpForm extends Component {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
+      base64: true,
       aspect: [4, 3],
     });
 
-    if (!result.cancelled) {
-      this.setState({ profileImage: result.uri });
+    if(result.base64){
+      this.setState({ profileImage: `data:image/png;base64, ${result.base64}` });
     }
+
   };
-
-  saveUser = () => {
-    const { id, email, ninkNm, profileImage, token, type, device} = this.state;
-    const { isServiceAgree, isPrivacyAgree } = this.props;
-
-
-  }
   
 
   render() {
 
-    function setSelectedOption(option){
+    setSelectedOption = (option) => {
       this.setState({
         selectedCustomSegment: option,
       });
     }
 
-    const { profileImage, email, ninkNm } = this.state;
+    const { uid, token, device  } = this.props.sUser;
+    const { profileImage, email, nickNm, selectedCustomSegment, isFocused } = this.state;
+    const type = selectedCustomSegment.value;
+
+    console.log(profileImage);
 
     return (
-        <View style={styles.container}>
-            <View style={styles.titleContainer} > 
-                <Text style={styles.titleFont}>{'Sign up'}</Text>
-            </View>
-            <ScrollView style={styles.contentsContainer}>
-                <View style={styles.contentsAside}>
-                    <TouchableOpacity style={styles.profileContainer} onPress={this.pickImage}>
-                        {profileImage == null ? <Image  source={require('../../../assets/default_profile_image.png')} style={styles.profileImage} /> : 
-                                                <Image  source={{uri: profileImage}} style={styles.profileImage}  /> }
-                    </TouchableOpacity>
 
-                    <View style={styles.inputWrap}>
-                        <FontAwesome5 name={'user'} size={30} style={styles.inputIcon} />
-                        <TextInput placeholder={'Name'} style={styles.inputStyle} value={ninkNm}  />
-                    </View>
-
-                    <View style={styles.inputWrap}>
-                        <MaterialCommunityIcons name={'email'} size={30}  style={styles.inputIcon} />
-                        <Text style={styles.inputStyle} >{email}</Text>
-                    </View>
-                    <View style={styles.segmentedControlsWrap}>
-                    <SegmentedControls  direction={'row'}
-                                        options={ [
-                                          { label:'개인', value: 'P' },
-                                          { label:'기업', value: 'E'},
-                                        ] }
-                                        tint= {'#6799FF'}
-                                        selectedTint= {'white'}
-                                        backTint= {'white'}
-                                        optionStyle= {{
-                                          fontSize: 30,
-                                        }}
-                                        onSelection={ setSelectedOption.bind(this) }
-                                        selectedOption={ this.state.selectedCustomSegment }
-                                        extractText={ (option) => option.label }
-                                        testOptionEqual={ (a, b) => {
-                                          if (!a || !b) {
-                                            return false;
-                                          }
-                                          return a.label === b.label
-                                        }}
-                                      />       
-                    </View>
-                    <View style={{marginTop:30, marginBottom:50}}>
-                    <TouchableOpacity onPress={ async ()=>{
-                      const {uid, email} = this.state;
-
-                      await AsyncStorage.setItem('uid', uid);
-                      await AsyncStorage.setItem('email', email);
-
-                      this.props.setGlobalUser(uid, email);
-                    }}>
-                      <View>
-                        <Text>{'회원가입'}</Text>
+      <Mutation mutation={SAVE_USER} >
+       {(saveUser) => (
+                  <View style={styles.container}>
+                      <View style={styles.titleContainer} > 
+                          <Text style={styles.titleFont}>{'Sign up'}</Text>
                       </View>
-                    </TouchableOpacity>
-                    </View>
-                   
-                </View>
-                
-                
+                      <View style={styles.contentsAside}>
+                          <TouchableOpacity style={styles.profileContainer} onPress={this.pickImage}>
+                              {profileImage == null ? <Image  source={require('../../../assets/default_profile_image.png')} style={styles.profileImage} /> : 
+                                                      <Image  source={{uri: profileImage}} style={styles.profileImage}  /> }
+                          </TouchableOpacity>
 
-            </ScrollView>
-        </View>
+                          <View style={styles.inputWrap}>
+                              <FontAwesome5 name={'user'} size={30} style={styles.inputIcon} />
+                              <TextInput  placeholder={'Name'} 
+                                          selectionColor={BLUE}
+                                          underlineColorAndroid={
+                                            isFocused ? BLUE : LIGHT_GRAY
+                                          }
+                                          onChange={(nickNm)=> {
+                                            this.setState({nickNm})
+                                          }}
+                                          onFocus={this.handleFocus}
+                                          onBlur={this.handleBlur}
+                                          style={[styles.inputStyle, styles.inputUnderLine]} 
+                                          value={nickNm}  />
+                          </View>
+                          <View style={styles.segmentedControlsWrap}>
+                            <SegmentedControls  direction={'row'}
+                                                options={ [
+                                                  { label:'개인', value: 'P' },
+                                                  { label:'기업', value: 'E'},
+                                                ] }
+                                                tint= {'#6799FF'}
+                                                selectedTint= {'white'}
+                                                backTint= {'white'}
+                                                optionStyle= {{
+                                                  fontSize: 30,
+                                                }}
+                                                onSelection={ setSelectedOption.bind(this) }
+                                                selectedOption={ this.state.selectedCustomSegment }
+                                                extractText={ (option) => option.label }
+                                                testOptionEqual={ (a, b) => {
+                                                  if (!a || !b) {
+                                                    return false;
+                                                  }
+                                                  return a.label === b.label
+                                                }}
+                                              />       
+                          </View>
+                      </View>
+                      <View style={{flex: 1, marginTop:50}}>
+                        <TouchableOpacity onPress={async () => {
+                    
+                              saveUser({
+                                variables: {
+                                  user: {
+                                    userId: uid,
+                                    nickNm: nickNm,
+                                    email: email,
+                                    token: token,
+                                    profile: profileImage,
+                                    type: type,
+                                    device: device
+                                  }
+                                }
+                              }).then(async (res) => {
+
+                                await AsyncStorage.setItem('uid', uid);
+                                await AsyncStorage.setItem('email', email);
+                            
+                                this.props.setGlobalUser();
+                              }).catch((err) => {
+                                Alert.alert('회원가입 오류', '회원가입 오류, 관리자에게 문의해주세요.')}
+                              );
+                          }}>
+                          <Text style={{fontSize:30, color: '#3897f0'}}>{'회원가입'}</Text>
+                        </TouchableOpacity>
+                      </View>
+                  </View>
+       )}
+      </Mutation>
     )
   }
 }
@@ -183,7 +228,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center', 
     marginTop:20, 
-    borderWidth:1,  
     borderRadius: 25,  
   },
   inputIcon: {
@@ -194,6 +238,10 @@ const styles = StyleSheet.create({
     flex:1, 
     marginRight:20
   },
+  inputUnderLine: {
+    paddingLeft: 6,
+    paddingBottom: 10,
+  },
   segmentedControlsWrap: {
     width:300, 
     height: 50, 
@@ -201,3 +249,14 @@ const styles = StyleSheet.create({
   },
 });
 
+function mapStateToProps(sUser) {
+  return {
+    ...sUser
+  };
+}
+
+const mapDispatchToProps = dispatch => ({
+  signUp: sUser => dispatch(signUp(sUser)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm);

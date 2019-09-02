@@ -1,17 +1,20 @@
+
 const GOOGLE_LGOIN = 'member/GOOGLE_LGOIN';
+const SAVE_POLICY_AGREEMENT = 'member/SAVE_POLICY_AGREEMENT';
 const SIGN_UP = 'member/SIGN_UP';
 const AUTO_LOGIN = 'member/AUTO_LOGIN';
 
 // 액션 생섬함수 정의
 export const googleLogin = sUser => ({ type: GOOGLE_LGOIN, sUser });
-export const signUp = () => ({ type: SIGN_UP });
-export const autoLogin = () => ({ type: AUTO_LOGIN });
+export const savePolicyAgreeMember = sUser => ({ type: SAVE_POLICY_AGREEMENT, sUser });
+export const signUp = sUser => ({ type: SIGN_UP, sUser });
+export const autoLogin = sUser => ({ type: AUTO_LOGIN, sUser });
 
 
 const initialState = {
     uid: null,
     email: null,
-    ninkNm : null,
+    nickNm : null,
     profileImage: null,
     token : null,
     type: null,
@@ -26,14 +29,23 @@ export default function sUser(state = initialState, action) {
 
   const { sUser } = action;
 
+  
+
     switch (action.type) {
       case GOOGLE_LGOIN:
         return {
           ...state,
           uid: sUser.uid,
-          ninkNm: sUser.ninkNm,
+          nickNm: sUser.nickNm,
           email: sUser.email,
           device: sUser.device,
+          token: sUser.token
+        };
+      case SAVE_POLICY_AGREEMENT:
+        return {
+          ...state,
+          isServiceAgree: sUser.isServiceAgree,
+          isPrivacyAgree: sUser.isPrivacyAgree,
         };
         case SIGN_UP:
             return {

@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Button, Alert, ScrollView} from 'react-native';
 import { CheckBox } from 'react-native-elements'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
-import { increment, googleLogin } from '../../../redux/actions';
+import { savePolicyAgreeMember } from '../../../redux/actions';
 
 class PolicyList extends Component {
 
@@ -28,12 +28,17 @@ class PolicyList extends Component {
       return;
     }
 
-    this.props.agreePolicy(isServiceAgree , isPrivacyAgree, isLocationAgree);
+    this.props.savePolicyAgreeMember({
+      isServiceAgree,
+      isPrivacyAgree
+    })
+
+    // this.props.agreePolicy(isServiceAgree , isPrivacyAgree, isLocationAgree);
   }
 
   render() {
 
-    console.log(this.props.sUser);
+
 
       return (
           
@@ -113,7 +118,7 @@ function mapStateToProps(sUser) {
 }
 
 const mapDispatchToProps = dispatch => ({
-  handleGoogleLogin: sUser => dispatch(googleLogin(sUser)),
+  savePolicyAgreeMember: sUser => dispatch(savePolicyAgreeMember(sUser)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PolicyList);
