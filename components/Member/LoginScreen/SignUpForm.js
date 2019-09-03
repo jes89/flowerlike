@@ -31,7 +31,7 @@ class SignUpForm extends Component {
   state = {
     email: null,
     nickNm : null,
-    profileImage: null,
+    profile: null,
     selectedCustomSegment :{ label:'개인', value: 'P' },
     isFocused: false,
   }
@@ -52,7 +52,7 @@ class SignUpForm extends Component {
 
   componentWillMount() {
 
-    const { email, nickNm } = this.props.sUser;
+    const { email, nickNm } = this.props.navigation.state.params;
 
     this.setState({
       email,
@@ -83,9 +83,8 @@ class SignUpForm extends Component {
     });
 
     if(result.base64){
-      this.setState({ profileImage: `data:image/png;base64, ${result.base64}` });
+      this.setState({ profile: `data:image/png;base64, ${result.base64}` });
     }
-
   };
   
 
@@ -97,11 +96,9 @@ class SignUpForm extends Component {
       });
     }
 
-    const { uid, token, device  } = this.props.sUser;
-    const { profileImage, email, nickNm, selectedCustomSegment, isFocused } = this.state;
+    const { userId, token, device  } = this.props.navigation.state.params;
+    const { profile, email, nickNm, selectedCustomSegment, isFocused } = this.state;
     const type = selectedCustomSegment.value;
-
-    console.log(profileImage);
 
     return (
 
@@ -113,8 +110,8 @@ class SignUpForm extends Component {
                       </View>
                       <View style={styles.contentsAside}>
                           <TouchableOpacity style={styles.profileContainer} onPress={this.pickImage}>
-                              {profileImage == null ? <Image  source={require('../../../assets/default_profile_image.png')} style={styles.profileImage} /> : 
-                                                      <Image  source={{uri: profileImage}} style={styles.profileImage}  /> }
+                              {profile == null ? <Image  source={require('../../../assets/default_profile_image.png')} style={styles.profileImage} /> : 
+                                                      <Image  source={{uri: profile}} style={styles.profileImage}  /> }
                           </TouchableOpacity>
 
                           <View style={styles.inputWrap}>
@@ -162,21 +159,29 @@ class SignUpForm extends Component {
                               saveUser({
                                 variables: {
                                   user: {
-                                    userId: uid,
-                                    nickNm: nickNm,
-                                    email: email,
-                                    token: token,
-                                    profile: profileImage,
-                                    type: type,
-                                    device: device
+                                    userId,
+                                    nickNm,
+                                    email,
+                                    token,
+                                    profile,
+                                    type,
+                                    device
                                   }
                                 }
                               }).then(async (res) => {
 
-                                await AsyncStorage.setItem('uid', uid);
+                                await AsyncStorage.setItem('userId', userId);
                                 await AsyncStorage.setItem('email', email);
-                            
-                                this.props.setGlobalUser();
+ 
+                                this.props.signUp({
+                                    userId,
+                                    nickNm,
+                                    email,
+                                    token,
+                                    profile,
+                                    type,
+                                    device
+                                });
                               }).catch((err) => {
                                 Alert.alert('회원가입 오류', '회원가입 오류, 관리자에게 문의해주세요.')}
                               );

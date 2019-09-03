@@ -12,8 +12,7 @@ export default class MenuTab extends Component {
 
         return (
             <TouchableOpacity style={styles.container} onPress={()=>{
-                AsyncStorage.removeItem('uid');
-                AsyncStorage.removeItem('email');
+
             }}>
                 <View style={{flexDirection:'row', flex:1, alignItems:'center'}} >
                     <View style={{flexDirection:'row', flex:1, alignItems:'center'}}>

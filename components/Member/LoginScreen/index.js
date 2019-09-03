@@ -1,17 +1,43 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Platform, AsyncStorage } from 'react-native';
+import { StyleSheet, View, Platform, AsyncStorage, ImageBackground, Text, Alert } from 'react-native';
 import * as Google from 'expo-google-app-auth';
-import GoogleLogin from './GoogleLogin';
-import SignUpForm from './SignUpForm';
-import PolicyList from './PolicyList';
-
+import GoogleButton from 'react-native-google-button';
 import { connect } from 'react-redux';
-import { googleLogin, increment } from '../../../redux/actions';
+import { autoLogin } from '../../../redux/actions';
+import LoadingMask from '../../Common/LoadingMask';
+import gql from 'graphql-tag';
+import { Query } from 'react-apollo';
+
+const GET_USER = gql`
+  query GetUser($userId: ID){
+    getUser(userId:$userId){
+      userId
+      email
+      nickNm
+      profile
+      token
+      type
+      device
+      intro
+    }
+  }
+`;
 
 class LoginScreen extends Component {
 
+  autoLoginObj = {}
+
+  userIdLoadFinished = false;
+  emailLoadFinished = false;
+  tokenLoadFinished = false;
+
+  state = {
+    isLoading: true,
+    isAutoLogin : false,
+  };
+
   signInWithGoogleAsync = async () => {
-    
+  
     const { type, accessToken, refreshToken, idToken ,  user } = await Google.logInAsync({
       iosClientId: `320146660045-oilotmqs4lqauh0fk7sp6o35amgf1kii.apps.googleusercontent.com`,
       androidClientId: `320146660045-1pkr3c5rlag29dqkq7ifppe475blaber.apps.googleusercontent.com`,
@@ -21,8 +47,9 @@ class LoginScreen extends Component {
     
     const token = await AsyncStorage.getItem('token');
     const device = Platform.OS;
-    this.props.handleGoogleLogin({
-        uid: user.id,
+    
+    this.props.navigation.navigate('policyList', {
+        userId: user.id,
         email: user.email,
         nickNm: user.name,
         token,
@@ -30,33 +57,95 @@ class LoginScreen extends Component {
     });
   }
 
-  getSignup = () =>{
+  checkAutoLogin = (data) => {
+    const key = Object.keys(data)[0];
     
-    const { isServiceAgree, isPrivacyAgree } = this.props.sUser;
+    this.autoLoginObj[key] = data[key];
 
-    return isServiceAgree && isPrivacyAgree ? <SignUpForm setGlobalUser={this.props.setGlobalUser} /> : <PolicyList />
-  } 
+    const { userId, email, token } = this.autoLoginObj;
+    const { userIdLoadFinished, emailLoadFinished, tokenLoadFinished } = this;
 
-  getLoginLayout = () => {
+    if( userIdLoadFinished && emailLoadFinished && tokenLoadFinished ){
 
-    const { uid } = this.props.sUser;
-
-    if(uid){
-        return  this.getSignup();
-    } else{
-        return <GoogleLogin signInWithGoogleAsync={this.signInWithGoogleAsync.bind(this)} ></GoogleLogin>
-    }
+      if(userId && email && token){
+        this.setState({
+            isLoading : false,
+            isAutoLogin : true
+          })
+      } else{
+          this.setState({
+            isLoading : false,
+            isAutoLogin : false,
+          })
+      }
+    }  
   }
 
+  componentWillMount() {
+    AsyncStorage.getItem('userId').then((userId) => {
+      this.userIdLoadFinished = true;
+      this.checkAutoLogin({userId});
+    });
+
+    AsyncStorage.getItem('email').then((email) => {
+      this.emailLoadFinished = true;
+      this.checkAutoLogin({email});
+    });
+
+    AsyncStorage.getItem('token').then((token) => {
+      this.tokenLoadFinished = true;
+      this.checkAutoLogin({token});
+    });
+  }
+
+  getLayout = () => {
+
+    const {isLoading, isAutoLogin} = this.state;
+
+    if(isLoading){
+      <LoadingMask />
+    } 
+
+    if(isAutoLogin){
+
+      const { userId } = this.autoLoginObj; 
+      const { handleAutoLogin } = this.props;
+
+      return <Query query={GET_USER} variables={{userId}} >
+         {({ loading, error, data }) => {
+
+            if(loading){
+              return <LoadingMask />;
+            }
+
+            if(error){
+              Alert.alert('오류', '자동로그인 도중 오류가 발생했습니다.\n다시 시도해주세요.');
+              AsyncStorage.removeItem('userId');
+              AsyncStorage.removeItem('email');
+            }
+            
+            handleAutoLogin(data.getUser);
   
+            return <LoadingMask />;
+          }}
+      </Query>
+
+    } else{
+      return <ImageBackground source={require('../../../assets/background.png')} style={{flex:1, justifyContent:'center', padding:20}}>
+                <View style={{flexDirection:'row', justifyContent:'center', marginTop: -100, marginBottom: 100}}>
+                  <Text style={{fontSize: 50}}>{'flowerlike'}</Text>
+                </View>
+                <GoogleButton onPress={this.signInWithGoogleAsync} >Google Login</GoogleButton>
+            </ImageBackground>   
+    }
+    
+  }
 
   render() {
+   
     return (
       <View style={styles.container}>
-        {
-          this.getLoginLayout()
-        }
-            
+         {this.getLayout()}
       </View>
     )
   }
@@ -69,15 +158,14 @@ const styles = StyleSheet.create({
 });
 
 
-
-function mapStateToProps(sUser) {
+const mapStateToProps = (sUser) => {
   return {
     ...sUser
   };
 }
 
 const mapDispatchToProps = dispatch => ({
-  handleGoogleLogin: sUser => dispatch(googleLogin(sUser)),
+  handleAutoLogin: sUser => dispatch(autoLogin(sUser)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);

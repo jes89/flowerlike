@@ -32,8 +32,6 @@ export default ImageSwiper = ({imageList}) => {
         </View>);
 }
 
-
-
 const styles = StyleSheet.create({
     photoContainer: {
         width:'100%', 

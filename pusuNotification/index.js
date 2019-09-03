@@ -2,6 +2,7 @@ import { Notifications} from 'expo';
 import * as Permissions from 'expo-permissions';
 import { AsyncStorage } from "react-native";
 
+
 export default async () => {
 
     let previousToken = await AsyncStorage.getItem('token');

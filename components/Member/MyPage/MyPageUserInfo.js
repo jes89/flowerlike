@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
 
-export default class MyPageUserInfo extends Component {
+class MyPageUserInfo extends Component {
     
     render() {
+
+        const { nickNm, profile } = this.props.sUser;
+
         return (
             <View style={styles.container}>
                 <View style={styles.profileImgContainer}>
                     <TouchableOpacity onPress={()=>{ this.props.navigation.navigate('profile')}}>
-                        <Image  source={{uri:'http://www.changetv.kr/upload/ProfileImg/2019-04-29060012_18.png'}}
-                                style={styles.profileImg} />
-                        <Text style={{textAlign:'center', marginTop : 5}}>{'라이언'}</Text>
+                        {
+                            profile ?   <Image source={{uri:profile}} style={styles.profileImg} /> : 
+                                        <Image source={require('../../../assets/default_profile_image.png')} style={styles.profileImg} />
+                        }
+                        
+                        <Text style={{textAlign:'center', marginTop : 5}}>{nickNm}</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.userLikeAndStarPoint}>
@@ -64,7 +71,7 @@ const styles = StyleSheet.create({
         height : 80,
         alignSelf: 'center',
         justifyContent:'center',
-        borderRadius: 50,
+        borderRadius: 40,
     },
     userLikeAndStarPoint : {
         flex : 1, 
@@ -79,3 +86,14 @@ const styles = StyleSheet.create({
         alignItems : 'center' 
     }
 });
+
+
+function mapStateToProps(sUser) {
+    return {
+      ...sUser
+    };
+  }
+  
+  
+  export default connect(mapStateToProps, null)(MyPageUserInfo);
+  

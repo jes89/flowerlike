@@ -1,13 +1,13 @@
 import React from 'react';
-import Home from './Home';
-import Search from './Search';
-import Like from './Like';
-import MyPage from './Member/MyPage';
-import Contact from './Contact';
-import ContentsView from './Contents/ContentsView';
-import EmployeeList from './Contents/Employee/EmployeeList';
-import Profile from './Member/MyPage/Profile';
-import IntroductionWrite from './Member/MyPage/Introduction/IntroductionWrite';
+import Home from '../Home';
+import Search from '../Search';
+import Like from '../Like';
+import MyPage from '../Member/MyPage';
+import Contact from '../Contact';
+import ContentsView from '../Contents/ContentsView';
+import EmployeeList from '../Contents/Employee/EmployeeList';
+import Profile from '../Member/MyPage/Profile';
+import IntroductionWrite from '../Member/MyPage/Introduction/IntroductionWrite';
 import {createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import { Entypo } from '@expo/vector-icons';
 import { AntDesign, FontAwesome, MaterialIcons } from '@expo/vector-icons';
@@ -41,7 +41,7 @@ const SearchStack = createStackNavigator({
 });
 
 
-export default BottomTabNavigator = createMaterialBottomTabNavigator({
+export default BottomTabNavigators = createMaterialBottomTabNavigator({
   home: { screen : HomeStack, 
     navigationOptions : {
       tabBarIcon: ({ tintColor }) => (

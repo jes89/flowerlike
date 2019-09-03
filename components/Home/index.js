@@ -3,8 +3,20 @@ import { StyleSheet, View, ScrollView } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 import TopBanner from './TopBanner';
 import MainContents from './MainContents';
+import { connect } from 'react-redux';
+import { signUp } from '../../redux/actions';
+import gql from 'graphql-tag';
+import { Mutation } from 'react-apollo';
 
-export default class Home extends Component {
+class Home extends Component {
+
+    componentWillMount() {
+        const { nickNm } = this.props.sUser;
+
+        this.setState({
+            nickNm
+        })
+    }
 
     state = {
         isLoading : true,
@@ -45,6 +57,16 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     }
 });
-
   
+function mapStateToProps(sUser) {
+    return {
+      ...sUser
+    };
+  }
+  
+  const mapDispatchToProps = dispatch => ({
+    signUp: sUser => dispatch(signUp(sUser)),
+  });
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(Home);
   

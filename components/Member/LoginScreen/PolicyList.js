@@ -3,7 +3,6 @@ import { StyleSheet, View, Text, Button, Alert, ScrollView} from 'react-native';
 import { CheckBox } from 'react-native-elements'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
-import { savePolicyAgreeMember } from '../../../redux/actions';
 
 class PolicyList extends Component {
 
@@ -27,18 +26,15 @@ class PolicyList extends Component {
       Alert.alert('이용안내','개인정보 이용약관 동의(필수)을/를 동의해주세요.');
       return;
     }
-
-    this.props.savePolicyAgreeMember({
+    
+    this.props.navigation.navigate('signUpForm', {
+      ...this.props.navigation.state.params,
       isServiceAgree,
       isPrivacyAgree
-    })
-
-    // this.props.agreePolicy(isServiceAgree , isPrivacyAgree, isLocationAgree);
+    });
   }
 
   render() {
-
-
 
       return (
           
@@ -117,8 +113,4 @@ function mapStateToProps(sUser) {
   };
 }
 
-const mapDispatchToProps = dispatch => ({
-  savePolicyAgreeMember: sUser => dispatch(savePolicyAgreeMember(sUser)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(PolicyList);
+export default connect(mapStateToProps, null)(PolicyList);

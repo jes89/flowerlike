@@ -8,7 +8,6 @@ export default class Contact extends Component {
         isLoading : true,
     }
 
-   
     render() {
 
         const { isLoading } = this.state;

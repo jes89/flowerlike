@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
 
-export default class IntroductionView extends Component {
+class IntroductionView extends Component {
     
     render() {
+
+        let { intro } = this.props.sUser;
+
+        if(intro == null || intro.length == 0){
+            intro = '자기소개를 작성해보세요!';
+        }
 
         return (
             <TouchableOpacity style={styles.container} onPress={()=>{
@@ -14,7 +21,7 @@ export default class IntroductionView extends Component {
                         <Text style={{fontWeight:'bold', fontSize: 16}}>{'자기소개'}</Text>
                     </View>
                     <View style={{paddingTop:10}}>
-                        <Text style={{lineHeight:25, }}>{'안녕하세요~ 잘 부탁드려요! \n한국마사회에서 5년째 근무 중인 정의섭입니다.\n토,일 9시~6시 근무합니다\n먹이주면 좋아해요~\nhhh'}</Text>
+                        <Text style={{lineHeight:25, }}>{intro}</Text>
                     </View>
                 </View>
             </TouchableOpacity>
@@ -31,3 +38,18 @@ const styles = StyleSheet.create({
         overflow:'hidden' 
     }, 
 });
+
+
+const mapStateToProps = (sUser) => {
+    return {
+        ...sUser
+    };
+}
+    
+const mapDispatchToProps = dispatch => ({
+    signUp: sUser => dispatch(signUp(sUser)),
+});
+    
+export default connect(mapStateToProps, mapDispatchToProps)(IntroductionView);
+      
+    
