@@ -183,7 +183,8 @@ class SignUpForm extends Component {
                                     device
                                 });
                               }).catch((err) => {
-                                Alert.alert('회원가입 오류', '회원가입 오류, 관리자에게 문의해주세요.')}
+
+                                Alert.alert('회원가입 오류', `회원가입 오류, 관리자에게 문의해주세요.\n ${err}`)}
                               );
                           }}>
                           <Text style={{fontSize:30, color: '#3897f0'}}>{'회원가입'}</Text>

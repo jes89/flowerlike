@@ -9,13 +9,13 @@ import registerForNotifications from './pusuNotification'
 import { ApolloProvider} from 'react-apollo'; 
 import { ApolloClient, InMemoryCache, HttpLink } from 'apollo-client-preset';
 
-
+const SERVER_URI = 'http://192.168.2.167:8080/graphql';
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink({uri: Platform.select({
-      ios: 'http://192.168.2.52:8080/graphql',
-      android: 'http://192.168.2.52:8080/graphql'
+      ios: SERVER_URI,
+      android: SERVER_URI,
     })
   })
 })

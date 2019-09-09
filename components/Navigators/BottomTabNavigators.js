@@ -13,8 +13,25 @@ import { Entypo } from '@expo/vector-icons';
 import { AntDesign, FontAwesome, MaterialIcons } from '@expo/vector-icons';
 import { View, Text } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
+import Settings from '../Member/MyPage/Settings';
+import Enterprise from '../Enterprise';
 
 const iconSize = 24;
+
+const EnterpriseStack = createStackNavigator({
+  enterprise: Enterprise,
+}, {
+  headerMode : 'none'
+});
+
+
+const SettingStack = createStackNavigator({
+  settings: Settings,
+  contact: Contact,
+  employeeList: EmployeeList,
+}, {
+  headerMode : 'none'
+});
 
 const HomeStack = createStackNavigator({
   main: Home,
@@ -27,7 +44,8 @@ const HomeStack = createStackNavigator({
 const MyPageStack = createStackNavigator({
   myPage: MyPage,
   introductionWrite: IntroductionWrite,
-  profile : Profile
+  profile : Profile,
+  settingStack: SettingStack
 }, {
   headerMode : 'none'
 });
@@ -71,7 +89,7 @@ export default BottomTabNavigators = createMaterialBottomTabNavigator({
       ),
     }     
   },
-  profile: { 
+  myPage: { 
     screen : MyPageStack , 
     navigationOptions : {
       tabBarIcon: ({ tintColor }) => (
@@ -81,18 +99,18 @@ export default BottomTabNavigators = createMaterialBottomTabNavigator({
       ),
     }     
   },
-  Contact : { 
-    screen : Contact , 
+  enterprise: { 
+    screen : EnterpriseStack , 
     navigationOptions : {
       tabBarIcon: ({ tintColor }) => (
         <View>  
-           <MaterialIcons name={'contact-mail'} style={[{color: tintColor}]} size={iconSize} /> 
+           <FontAwesome name={'building'} style={[{color: tintColor}]} size={iconSize} /> 
         </View>
       ),
     }     
   },
 },{
-  initialRouteName: "home",  
+  // initialRouteName: 'profile',  
   labeled : false,
   activeColor: '#5A5A5A',  
   inactiveColor: '#5A5A5A',  

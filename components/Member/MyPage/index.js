@@ -8,16 +8,13 @@ import HeaderLayout from '../../HeaderLayout';
 import { connect } from 'react-redux';
 import { signUp } from '../../../redux/actions';
 
+const ICON_SIZE = 20;
 const menuList = [
-    { key : 'likeAndStartScore' , title: '즐겨찾기', icon : <Feather name={'bookmark'} color={'#FFCD12'} size={25} style={{width:30}} /> },
-    { key : 'bookMark' , title: '별점관리', icon :  <FontAwesome5 name={'star'} color={'#F5E107'} size={25} style={{width:30}} /> },
-    { key : 'star' , title: '매장관리', icon :  <FontAwesome5 name={'building'} color={'#4374D9'} size={25} style={{width:30}} /> },
-    { key : 'enterprise' , title: '설정', icon :  <AntDesign name={'setting'} color={'#0BC904'} size={25}  style={{width:30}}/> },
-
-    { key : 'likeAndStartScore2' , title: '즐겨찾기', icon : <Feather name={'bookmark'} color={'#FFCD12'} size={25} style={{width:30}} /> },
-    { key : 'bookMark2' , title: '별점관리', icon :  <FontAwesome5 name={'star'} color={'#F5E107'} size={25} style={{width:30}} /> },
-    { key : 'star2' , title: '매장관리', icon :  <FontAwesome5 name={'building'} color={'#4374D9'} size={25} style={{width:30}} /> },
-    { key : 'enterprise2' , title: '설정', icon :  <AntDesign name={'setting'} color={'#0BC904'} size={25}  style={{width:30}}/> },
+    { key : 'start' , title: '별점관리', icon :  <FontAwesome5 name={'star'} color={'#F5E107'} size={ICON_SIZE} style={{width:30}} /> , navigateName: 'settingStack' } ,
+    { key : 'store' , title: '매장관리', icon :  <FontAwesome5 name={'heart'} color={'#FF7E7E'} size={ICON_SIZE} style={{width:30}} /> , navigateName: 'settingStack' } ,
+    { key : 'settings' , title: '설정', icon :  <AntDesign name={'setting'} color={'#0BC904'} size={ICON_SIZE}  style={{width:30}}/>, navigateName: 'settingStack' } ,
+    // { key : 'star' , title: '매장관리', icon :  <FontAwesome5 name={'building'} color={'#4374D9'} size={25} style={{width:30}} /> , navigateName: 'settingStack' } ,
+  
 ]
 
  class MyPage extends Component {
@@ -29,7 +26,6 @@ const menuList = [
             nickNm
         })
     }
-    
 
     render() {
 
@@ -45,7 +41,7 @@ const menuList = [
                     <MyPageUserInfo navigation={this.props.navigation}/>
                     <IntroductionView navigation={this.props.navigation} />
                     <View style={styles.divider} />
-                    <FlatList   data={menuList} renderItem={({item}) => <MenuTab item={item}></MenuTab>} />
+                    <FlatList   data={menuList} renderItem={({item}) => <MenuTab navigation={this.props.navigation} item={item}></MenuTab>} />
                 </ScrollView>
             </View>
         );

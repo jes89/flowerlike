@@ -48,8 +48,8 @@ const styles = StyleSheet.create({
         height:50, 
         paddingLeft:20,
         paddingRight:20,
-        borderColor: '#F6F6F6',
-        borderBottomWidth: 2,
+        borderColor : '#F6F6F6',
+        borderBottomWidth: 3,
         flexDirection:'row',
         justifyContent: 'space-between'
     },
@@ -66,10 +66,11 @@ const styles = StyleSheet.create({
     },
     historyBackButton: {
         alignSelf:'center', 
-        marginRight: 8
+        marginRight: 12
     },
     headerFont : {
-        fontSize:20, 
+        fontSize:20,
         fontWeight:'bold',
+        alignSelf:'center'
     }
 });

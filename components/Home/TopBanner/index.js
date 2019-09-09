@@ -30,7 +30,6 @@ export default class TopBanner extends Component {
 const styles = StyleSheet.create({
   container : {
       width: '100%',
-      height: 300,
       // marginTop : 20,
       // marginBottom : 30,
   },

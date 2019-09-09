@@ -29,13 +29,13 @@ class MyPageUserInfo extends Component {
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.iconTouchContainer} onPress={()=>{}}>
                         <View style={styles.iconContainer} >
-                            <Text style={{fontWeight:'bold'}}>4.7(2034)</Text>
+                            <Text style={{fontWeight:'bold'}}>4.7</Text>
                             <Text style={{}}>좋아요</Text>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.iconTouchContainer} onPress={()=>{}}>
                         <View style={styles.iconContainer} >
-                            <Text style={{fontWeight:'bold'}}>4.7(2034)</Text>
+                            <Text style={{fontWeight:'bold'}}>4.7</Text>
                             <Text style={{}}>평점</Text>
                         </View>
                     </TouchableOpacity>
@@ -48,7 +48,7 @@ class MyPageUserInfo extends Component {
 const styles = StyleSheet.create({
     container: {
         height: 160,
-        borderWidth: 1,
+        borderBottomWidth: 3,
         borderColor: '#EAEAEA',
         paddingTop: 20,
         paddingBottom : 20,

@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { signUp } from '../../../../redux/actions';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
+import * as ImagePicker from 'expo-image-picker';
 
 const TEXT_INPUT_FCOUSED_COLOR = '#FFB2D9';
 const TEXT_INPUT_DEFUALT_COLOR = '#EAEAEA';
@@ -43,19 +44,6 @@ class Profile extends Component {
         })
     }
 
-    pickImage = async () => {
-        let result = await ImagePicker.launchImageLibraryAsync({
-          mediaTypes: ImagePicker.MediaTypeOptions.All,
-          allowsEditing: true,
-          base64: true,
-          aspect: [4, 3],
-        });
-    
-        if(result.base64){
-          this.setState({ profile: `data:image/png;base64, ${result.base64}` });
-        }
-
-    }
 
     render() {
 
@@ -87,7 +75,21 @@ class Profile extends Component {
                                     }}  />
                     <ScrollView>
                         <View style={styles.profileImgContainer}>
-                            <TouchableOpacity onPress={this.pickImage}>
+                            <TouchableOpacity onPress={ async () => {
+                                                        let config = {
+                                                                        mediaTypes: ImagePicker.MediaTypeOptions.All,
+                                                                        allowsEditing: true,
+                                                                        base64: true,
+                                                                        aspect: [4, 3],
+                                                                    }
+                                                        let result = await ImagePicker.launchImageLibraryAsync(config);
+                                                    
+                                                        if(result.base64){
+                                                            this.setState({ profile: `data:image/png;base64, ${result.base64}` });
+                                                        }
+                                                        
+                                                    }
+                                }>
                                    {
                                         profile ?   <Image source={{uri:profile}} style={styles.profileImg} /> : 
                                                     <Image source={require('../../../../assets/default_profile_image.png')} style={styles.profileImg} />

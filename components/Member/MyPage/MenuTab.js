@@ -8,11 +8,11 @@ export default class MenuTab extends Component {
 
     render() {
 
-        const { item } = this.props;
+        const { item, navigation } = this.props;
 
         return (
             <TouchableOpacity style={styles.container} onPress={()=>{
-
+                navigation.navigate(item.navigateName);
             }}>
                 <View style={{flexDirection:'row', flex:1, alignItems:'center'}} >
                     <View style={{flexDirection:'row', flex:1, alignItems:'center'}}>

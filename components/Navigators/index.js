@@ -4,8 +4,6 @@ import LgoinNavigators from './LgoinNavigators';
 import BottomTabNavigators from './BottomTabNavigators';
 import { createAppContainer } from 'react-navigation';
 
-
-
 let BottomTabNavigation = createAppContainer(BottomTabNavigators);
 let LoginNavigation = createAppContainer(LgoinNavigators);
 
@@ -14,7 +12,7 @@ class Navigators extends Component {
     getNavigation = () => {
 
         const { userId, email, token  } = this.props.sUser;
- 
+
         if(userId && email && token){
             return <BottomTabNavigation />
         } else{

@@ -73,15 +73,18 @@ class LoginScreen extends Component {
             isAutoLogin : true
           })
       } else{
+          
+
           this.setState({
             isLoading : false,
             isAutoLogin : false,
           })
       }
-    }  
+    }
   }
 
   componentWillMount() {
+
     AsyncStorage.getItem('userId').then((userId) => {
       this.userIdLoadFinished = true;
       this.checkAutoLogin({userId});
@@ -117,14 +120,15 @@ class LoginScreen extends Component {
             if(loading){
               return <LoadingMask />;
             }
-
+            
             if(error){
               Alert.alert('오류', '자동로그인 도중 오류가 발생했습니다.\n다시 시도해주세요.');
               AsyncStorage.removeItem('userId');
               AsyncStorage.removeItem('email');
             }
-            
+
             handleAutoLogin(data.getUser);
+            
   
             return <LoadingMask />;
           }}

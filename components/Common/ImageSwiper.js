@@ -35,7 +35,7 @@ export default ImageSwiper = ({imageList}) => {
 const styles = StyleSheet.create({
     photoContainer: {
         width:'100%', 
-        height: widthRatio * 3, 
+        height: widthRatio * 1.5, 
         justifyContent: 'center', 
         backgroundColor: 'black',
         marginBottom: 10,

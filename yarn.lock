@@ -7161,7 +7161,7 @@ lodash.debounce@^4.0.8:
   resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
   integrity sha1-gteb/zCmfEAF/9XiUVMArZyk168=
 
-lodash.isequal@4.5.0:
+lodash.isequal@4.5.0, lodash.isequal@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
   integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
@@ -9967,6 +9967,18 @@ react-native-paper@^2.16.0:
     hoist-non-react-statics "^3.1.0"
     react-lifecycles-compat "^3.0.4"
     react-native-safe-area-view "^0.12.0"
+
+react-native-picker-select@^6.3.2:
+  version "6.3.2"
+  resolved "https://registry.yarnpkg.com/react-native-picker-select/-/react-native-picker-select-6.3.2.tgz#5fad902e77e23f4217eea7e93ef513a4dcf641d7"
+  integrity sha512-f7DNP9M4UHOtsXizpbd1jWgzV38Yn9WEPu+rY2o8to4rr+CHXl/V6W2G1qXkDPMIzUa9oClYsK8PylVRSoH8iQ==
+  dependencies:
+    lodash.isequal "^4.5.0"
+
+react-native-radio-buttons-group@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/react-native-radio-buttons-group/-/react-native-radio-buttons-group-1.0.7.tgz#176acaaa72e8e0d81baaf96abecd478ee8982b71"
+  integrity sha512-ddBQsmKUNrLli+v/MDkEcYZyRCrKhU+OqzveMPve6ix0D0O7YbwdxSmKJ3NHUItlN/oBOwbi0rFMmOwETdJgqQ==
 
 react-native-radio-buttons@^1.0.0:
   version "1.0.0"

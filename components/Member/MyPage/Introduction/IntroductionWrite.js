@@ -1,20 +1,25 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, BackHandler, Alert } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import HeaderLayout from '../../../HeaderLayout';
+import { connect } from 'react-redux';
 
 
-export default class IntroductionWrite extends Component {
+class IntroductionWrite extends Component {
 
-
+    
     
     constructor(props) {
         super(props);
         this._didFocusSubscription;
         this._willBlurSubscription;
+        
+        let { intro } = props.sUser;
+
+        intro = intro || '';
+
         this.state = { 
-            originText : '안녕하세요~ 잘 부탁드려요! \n한국마사회에서 5년째 근무 중인 정의섭입니다.\n토,일 9시~6시 근무합니다\n먹이주면 좋아해요~\nhhh',
-            text: '안녕하세요~ 잘 부탁드려요! \n한국마사회에서 5년째 근무 중인 정의섭입니다.\n토,일 9시~6시 근무합니다\n먹이주면 좋아해요~\nhhh'
+            originText : intro,
+            text: intro
         };
         this._didFocusSubscription = props.navigation.addListener('didFocus', payload =>
             BackHandler.addEventListener('hardwareBackPress', this.onBackButtonPressAndroid)
@@ -61,6 +66,8 @@ export default class IntroductionWrite extends Component {
           
 
         const { text } = this.state;
+
+        console.log(text);
 
         return (
             <View style={styles.container}>
@@ -111,3 +118,18 @@ const styles = StyleSheet.create({
         borderWidth: 1
     }
 });
+
+
+const mapStateToProps = (sUser) => {
+    return {
+        ...sUser
+    };
+}
+    
+const mapDispatchToProps = dispatch => ({
+    signUp: sUser => dispatch(signUp(sUser)),
+});
+    
+export default connect(mapStateToProps, mapDispatchToProps)(IntroductionWrite);
+      
+    
