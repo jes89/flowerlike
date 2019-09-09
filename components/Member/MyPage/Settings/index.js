@@ -3,6 +3,8 @@ import { StyleSheet, View, Text, TouchableOpacity, Switch, AsyncStorage } from '
 import HeaderLayout from '../../../HeaderLayout';
 import { Entypo, AntDesign, Ionicons } from '@expo/vector-icons';
 
+const ICON_SIZE = 20;
+
 export default class Settings extends Component {
     
     state = {
@@ -24,7 +26,7 @@ export default class Settings extends Component {
 
                 <View style={styles.row}>
                     <View style={styles.iconContainer}>
-                        <Entypo name={'bell'} size={20} />
+                        <Entypo name={'bell'} size={ICON_SIZE} />
                         <Text style={styles.rowText}>알림</Text>
                     </View>
                     <Switch onValueChange={(pushState)=>{this.setState({pushState})}} 
@@ -38,10 +40,10 @@ export default class Settings extends Component {
                 }}>
                     <View style={styles.row}>
                         <View style={styles.iconContainer}>
-                            <Entypo name={'documents'} size={20} />
+                            <Entypo name={'documents'} size={ICON_SIZE} />
                             <Text style={styles.rowText}>서비스 약관</Text>
                         </View>
-                        <Ionicons name={'ios-arrow-forward'} color={'#BDBDBD'} style={styles.rightSide} size={20} />
+                        <Ionicons name={'ios-arrow-forward'} color={'#BDBDBD'} style={styles.rightSide} size={ICON_SIZE} />
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=>{
@@ -49,10 +51,10 @@ export default class Settings extends Component {
                 }}>
                     <View style={styles.row}>
                         <View style={styles.iconContainer}>
-                            <AntDesign name={'customerservice'} size={20} />
+                            <AntDesign name={'customerservice'} size={ICON_SIZE} />
                             <Text style={styles.rowText}>고객센터</Text>
                         </View>
-                        <Ionicons name={'ios-arrow-forward'} color={'#BDBDBD'} style={styles.rightSide} size={20} />
+                        <Ionicons name={'ios-arrow-forward'} color={'#BDBDBD'} style={styles.rightSide} size={ICON_SIZE} />
                     </View>
                 </TouchableOpacity>
             </View>

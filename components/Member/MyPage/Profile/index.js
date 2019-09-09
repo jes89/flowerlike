@@ -48,6 +48,7 @@ class Profile extends Component {
     render() {
 
         const { userId, nickNm, profile, email } = this.state;
+        let { sUser, signUp } = this.props;
 
         return (
             <Mutation mutation={SAVE_USER} >
@@ -68,7 +69,13 @@ class Profile extends Component {
                                               }
                                             }
                                           }).then(async (res) => {
-                                        
+                                            const { nickNm, profile } = res.data.saveUser;
+
+                                            sUser.nickNm = nickNm;
+                                            sUser.profile = profile;
+                                            
+                                            signUp(sUser);
+
                                           }).catch((err) => {
                                             Alert.alert('회원가입 오류', '회원가입 오류, 관리자에게 문의해주세요.')}
                                           )
@@ -107,7 +114,7 @@ class Profile extends Component {
                                         onChange={(nickNm)=>{
                                             this.setState({nickNm})
                                         }}
-                                        style={styles.textInputStyle}></TextInput>
+                                        style={styles.textInputStyle}>{nickNm}</TextInput>
                         </View>
                         <View style={{margin:15}}>
                             <Text>{'포인트'}</Text>

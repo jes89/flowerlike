@@ -89,16 +89,6 @@ export default BottomTabNavigators = createMaterialBottomTabNavigator({
       ),
     }     
   },
-  myPage: { 
-    screen : MyPageStack , 
-    navigationOptions : {
-      tabBarIcon: ({ tintColor }) => (
-        <View>  
-           <FontAwesome name={'user'} style={[{color: tintColor}]} size={iconSize} /> 
-        </View>
-      ),
-    }     
-  },
   enterprise: { 
     screen : EnterpriseStack , 
     navigationOptions : {
@@ -109,8 +99,18 @@ export default BottomTabNavigators = createMaterialBottomTabNavigator({
       ),
     }     
   },
+  myPage: { 
+    screen : MyPageStack , 
+    navigationOptions : {
+      tabBarIcon: ({ tintColor }) => (
+        <View>  
+           <FontAwesome name={'user'} style={[{color: tintColor}]} size={iconSize} /> 
+        </View>
+      ),
+    }     
+  },
 },{
-  // initialRouteName: 'profile',  
+  initialRouteName: 'enterprise',  
   labeled : false,
   activeColor: '#5A5A5A',  
   inactiveColor: '#5A5A5A',  

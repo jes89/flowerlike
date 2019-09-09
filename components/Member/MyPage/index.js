@@ -10,8 +10,8 @@ import { signUp } from '../../../redux/actions';
 
 const ICON_SIZE = 20;
 const menuList = [
-    { key : 'start' , title: '별점관리', icon :  <FontAwesome5 name={'star'} color={'#F5E107'} size={ICON_SIZE} style={{width:30}} /> , navigateName: 'settingStack' } ,
-    { key : 'store' , title: '매장관리', icon :  <FontAwesome5 name={'heart'} color={'#FF7E7E'} size={ICON_SIZE} style={{width:30}} /> , navigateName: 'settingStack' } ,
+    { key : 'start' , title: '평점 관리', icon :  <FontAwesome5 name={'star'} color={'#F5E107'} size={ICON_SIZE} style={{width:30}} /> , navigateName: 'settingStack' } ,
+    { key : 'store' , title: '좋아요 관리', icon :  <FontAwesome5 name={'heart'} color={'#FF7E7E'} size={ICON_SIZE} style={{width:30}} /> , navigateName: 'settingStack' } ,
     { key : 'settings' , title: '설정', icon :  <AntDesign name={'setting'} color={'#0BC904'} size={ICON_SIZE}  style={{width:30}}/>, navigateName: 'settingStack' } ,
     // { key : 'star' , title: '매장관리', icon :  <FontAwesome5 name={'building'} color={'#4374D9'} size={25} style={{width:30}} /> , navigateName: 'settingStack' } ,
   
