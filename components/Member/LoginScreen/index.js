@@ -57,6 +57,8 @@ class LoginScreen extends Component {
     });
   }
 
+
+
   checkAutoLogin = (data) => {
     const key = Object.keys(data)[0];
     
@@ -73,8 +75,6 @@ class LoginScreen extends Component {
             isAutoLogin : true
           })
       } else{
-          
-
           this.setState({
             isLoading : false,
             isAutoLogin : false,
@@ -101,6 +101,15 @@ class LoginScreen extends Component {
     });
   }
 
+  getGoogleLoginLayout = () => {
+    return <ImageBackground source={require('../../../assets/background.png')} style={{flex:1, justifyContent:'center', padding:20}}>
+                <View style={{flexDirection:'row', justifyContent:'center', marginTop: -100, marginBottom: 100}}>
+                  <Text style={{fontSize: 50}}>{'flowerlike'}</Text>
+                </View>
+                <GoogleButton onPress={this.signInWithGoogleAsync} >Google Login</GoogleButton>
+            </ImageBackground>   
+  }
+
   getLayout = () => {
 
     const {isLoading, isAutoLogin} = this.state;
@@ -120,6 +129,10 @@ class LoginScreen extends Component {
             if(loading){
               return <LoadingMask />;
             }
+
+            if(data.getUser == null){
+              return this.getGoogleLoginLayout();
+            }
             
             if(error){
               Alert.alert('오류', '자동로그인 도중 오류가 발생했습니다.\n다시 시도해주세요.');
@@ -127,20 +140,15 @@ class LoginScreen extends Component {
               AsyncStorage.removeItem('email');
             }
 
+
             handleAutoLogin(data.getUser);
-            
-  
+
             return <LoadingMask />;
           }}
       </Query>
 
     } else{
-      return <ImageBackground source={require('../../../assets/background.png')} style={{flex:1, justifyContent:'center', padding:20}}>
-                <View style={{flexDirection:'row', justifyContent:'center', marginTop: -100, marginBottom: 100}}>
-                  <Text style={{fontSize: 50}}>{'flowerlike'}</Text>
-                </View>
-                <GoogleButton onPress={this.signInWithGoogleAsync} >Google Login</GoogleButton>
-            </ImageBackground>   
+        return this.getGoogleLoginLayout();
     }
     
   }

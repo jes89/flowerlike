@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import { StyleSheet, View, Text, TouchableHighlight } from 'react-native';
-import GoogleAddressSearchBar from './GoogleAddressSearchBar';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import GoogleAddressSearchBar from '../Common/GoogleAddressSearchBar';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -56,12 +56,12 @@ export default class DefaultSearchMode extends Component {
         <View style={isSearchMode ? {height : 200} : null }>
           { 
             isSearchMode ?  <GoogleAddressSearchBar  locationText={locationText} setLocationText={this.setLocationText.bind(this)}  /> 
-                          :  <TouchableHighlight style={styles.searchAsideTouchableHighlight} onPress={this.findMyLocation}>
+                          :  <TouchableOpacity style={styles.searchAsideTouchableHighlight} onPress={this.findMyLocation}>
                                 <View style={styles.searchAside} >
                                     <FontAwesome5 name={'map'}></FontAwesome5> 
                                     <Text style={styles.iconText}>{'위치 검색'}</Text>
                                 </View>
-                            </TouchableHighlight> 
+                            </TouchableOpacity> 
           }
         </View>
       );

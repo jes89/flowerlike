@@ -15,11 +15,16 @@ import { View, Text } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import Settings from '../Member/MyPage/Settings';
 import Enterprise from '../Enterprise';
+import EnterpriseView from '../Enterprise/EnterpriseView';
+import EnterpriseWrite from '../Enterprise/EnterpriseWrite';
 
 const iconSize = 24;
 
 const EnterpriseStack = createStackNavigator({
   enterprise: Enterprise,
+  enterpriseView : EnterpriseView,
+  enterpriseWrite : EnterpriseWrite,
+
 }, {
   headerMode : 'none'
 });

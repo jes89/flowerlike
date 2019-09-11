@@ -1,7 +1,7 @@
 import React, { Component  } from 'react';
 import { StyleSheet, View, Button } from 'react-native';
 import { Searchbar } from 'react-native-paper';
-import LocationSearch from './LocationSearch';
+import LocationSearch from '../Common/LocationSearch';
 import { ScrollView } from 'react-native-gesture-handler';
 import ContentsListLayout from '../Contents/ContentsListLayout';
 

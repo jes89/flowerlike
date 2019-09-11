@@ -1,68 +1,46 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import HeaderLayout from '../HeaderLayout';
 import { connect } from 'react-redux';
-import { Entypo, AntDesign, Ionicons, FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 const ICON_SIZE = 20;
 
- class Enterprise extends Component {
+class Enterprise extends Component {
 
+    getMyEnterpriseList = (myList) => {
+
+        if(myList == null || myList.length === 0){
+
+            return (
+                <View style={{justifyContent:'center', alignItems:'center', flex: 1}}>
+                     <Text>{'첫번째 나의 매장을 등록해보세요 !'}</Text>
+                </View>
+                )
+        }
+
+        return null;
+    }
 
     render() {
+
+        const { navigation } = this.props;
 
         return (
             <View style={styles.container}>
                 <HeaderLayout   title={'매장관리'} 
-                                isRightSideButton={false} 
-                                rightSideButton={''} 
+                                isRightSideButton={true} 
+                                rightSideButton={<FontAwesome5 name={'plus'} size={ICON_SIZE} />} 
                                 isHistoryBackButton={false} 
                                 leftSideButtonEvent={()=>{}} 
-                                rightSideButtonEvent={()=>{}}  />
-                <TouchableOpacity onPress={()=>{
-                    
-                }}>
-                    <View style={styles.row}>
-                        <View style={styles.iconContainer}>
-                            <FontAwesome5 name={'store'} size={ICON_SIZE} />
-                            <Text style={styles.rowText}>{'매장정보'}</Text>
-                        </View>
-                        <Ionicons name={'ios-arrow-forward'} color={'#BDBDBD'} style={styles.rightSide} size={ICON_SIZE} />
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={()=>{
-                    
-                }}>
-                    <View style={styles.row}>
-                        <View style={styles.iconContainer}>
-                            <FontAwesome5 name={'user-friends'} size={ICON_SIZE} />
-                            <Text style={styles.rowText}>{'직원관리'}</Text>
-                        </View>
-                        <Ionicons name={'ios-arrow-forward'} color={'#BDBDBD'} style={styles.rightSide} size={ICON_SIZE} />
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={()=>{
-                    
-                }}>
-                    <View style={styles.row}>
-                        <View style={styles.iconContainer}>
-                        <Entypo name={'bell'} size={ICON_SIZE} />
-                            <Text style={styles.rowText}>{'푸쉬관리'}</Text>
-                        </View>
-                        <Ionicons name={'ios-arrow-forward'} color={'#BDBDBD'} style={styles.rightSide} size={ICON_SIZE} />
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={()=>{
-                    
-                }}>
-                    <View style={styles.row}>
-                        <View style={styles.iconContainer}>
-                            <FontAwesome5 name={'chalkboard'} size={ICON_SIZE} />
-                            <Text style={styles.rowText}>{'내부 게시판'}</Text>
-                        </View> 
-                        <Ionicons name={'ios-arrow-forward'} color={'#BDBDBD'} style={styles.rightSide} size={ICON_SIZE} />
-                    </View>
-                </TouchableOpacity>
+                                rightSideButtonEvent={()=>{
+                                    navigation.navigate('enterpriseWrite',{
+                                        enterpriseIdx : 0
+                                    });
+                                }}  />
+                {
+                    this.getMyEnterpriseList()
+                }
             </View>
         );
     }
