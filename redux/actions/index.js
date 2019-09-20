@@ -16,7 +16,9 @@ const initialState = {
     email: null,
     nickNm : null,
     profile: null,
-    token : null,
+    accessToken: null,
+    pushToken: null,
+    refreshToken: null,
     type: null,
     device: null,
     intro: null,
@@ -37,7 +39,9 @@ export default function sUser(state = initialState, action) {
           nickNm: sUser.nickNm,
           email: sUser.email,
           device: sUser.device,
-          token: sUser.token
+          accessToken: sUser.accessToken,
+          pushToken: sUser.pushToken,
+          refreshToken: sUser.refreshToken,
         };
       case SAVE_POLICY_AGREEMENT:
         return {
@@ -51,7 +55,9 @@ export default function sUser(state = initialState, action) {
               userId: sUser.userId,
               nickNm: sUser.nickNm,
               email: sUser.email,
-              token: sUser.token,
+              accessToken: sUser.accessToken,
+              pushToken: sUser.pushToken,
+              refreshToken: sUser.refreshToken,
               profile: sUser.profile,
               type: sUser.type,
               device: sUser.device,
@@ -62,7 +68,9 @@ export default function sUser(state = initialState, action) {
               userId: sUser.userId,
               nickNm: sUser.nickNm,
               email: sUser.email,
-              token: sUser.token,
+              accessToken: sUser.accessToken,
+              pushToken: sUser.pushToken,
+              refreshToken: sUser.refreshToken,
               profile: sUser.profile,
               type: sUser.type,
               device: sUser.device,

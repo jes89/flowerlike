@@ -36,7 +36,7 @@ export default class Settings extends Component {
                 <TouchableOpacity onPress={()=>{
                       AsyncStorage.setItem('userId', '');
                       AsyncStorage.setItem('email', '');
-                      AsyncStorage.setItem('token', '');
+                      AsyncStorage.setItem('pushToken', '');
                 }}>
                     <View style={styles.row}>
                         <View style={styles.iconContainer}>

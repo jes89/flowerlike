@@ -11,16 +11,17 @@ import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 
 const SAVE_USER = gql`
-      mutation saveUser($user: SaveUserInput){
-        saveUser(user:$user){
-          userId
-          nickNm
-          email
-          token
-          device
-          profile
-        }
-      }
+  mutation saveUser($user: SaveUserInput){
+    saveUser(user:$user){
+      userId
+      nickNm
+      email
+      pushToken
+      device
+      profile
+      refreshToken
+    }
+}
 `;
 
 const BLUE = "#428AF8";
@@ -96,9 +97,11 @@ class SignUpForm extends Component {
       });
     }
 
-    const { userId, token, device  } = this.props.navigation.state.params;
-    const { profile, email, nickNm, selectedCustomSegment, isFocused } = this.state;
-    const type = selectedCustomSegment.value;
+    let { userId, pushToken, device  } = this.props.navigation.state.params;
+    let { profile, email, nickNm, selectedCustomSegment, isFocused } = this.state;
+    let type = selectedCustomSegment.value;
+
+    profile = profile;
 
     return (
 
@@ -110,8 +113,8 @@ class SignUpForm extends Component {
                       </View>
                       <View style={styles.contentsAside}>
                           <TouchableOpacity style={styles.profileContainer} onPress={this.pickImage}>
-                              {profile == null ? <Image  source={require('../../../assets/default_profile_image.png')} style={styles.profileImage} /> : 
-                                                      <Image  source={{uri: profile}} style={styles.profileImage}  /> }
+                              {profile  ? <Image  source={{uri: profile}} style={styles.profileImage}  /> : 
+                                          <Image  source={require('../../../assets/default_profile_image.png')} style={styles.profileImage} />            }
                           </TouchableOpacity>
 
                           <View style={styles.inputWrap}>
@@ -155,35 +158,35 @@ class SignUpForm extends Component {
                       </View>
                       <View style={{flex: 1, marginTop:50}}>
                         <TouchableOpacity onPress={async () => {
-                    
+
                               saveUser({
                                 variables: {
                                   user: {
                                     userId,
                                     nickNm,
                                     email,
-                                    token,
+                                    pushToken,
                                     profile,
                                     type,
                                     device
                                   }
                                 }
                               }).then(async (res) => {
-
+                                
                                 await AsyncStorage.setItem('userId', userId);
                                 await AsyncStorage.setItem('email', email);
- 
+                                await AsyncStorage.setItem('pushToken', pushToken);
+
                                 this.props.signUp({
                                     userId,
                                     nickNm,
                                     email,
-                                    token,
+                                    pushToken,
                                     profile,
                                     type,
                                     device
                                 });
                               }).catch((err) => {
-
                                 Alert.alert('회원가입 오류', `회원가입 오류, 관리자에게 문의해주세요.\n ${err}`)}
                               );
                           }}>
@@ -201,7 +204,8 @@ const styles = StyleSheet.create({
   container : {
     flex:1,
     alignItems:'center', 
-    justifyContent: 'center'
+    justifyContent: 'center',
+    backgroundColor: 'white',
   },
   titleContainer: {
     marginTop: 30

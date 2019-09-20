@@ -11,9 +11,9 @@ class Navigators extends Component {
 
     getNavigation = () => {
 
-        const { userId, email, token  } = this.props.sUser;
+        const { userId, email, pushToken  } = this.props.sUser;
 
-        if(userId && email && token){
+        if(userId && email && pushToken){
             return <BottomTabNavigation />
         } else{
             return <LoginNavigation/>

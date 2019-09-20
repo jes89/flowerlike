@@ -9,7 +9,7 @@ import registerForNotifications from './pusuNotification'
 import { ApolloProvider} from 'react-apollo'; 
 import { ApolloClient, InMemoryCache, HttpLink } from 'apollo-client-preset';
 
-const MAC_ADDRESS = 'http://192.168.2.167:8080/';
+const MAC_ADDRESS = 'http://14.6.235.34:8080/';
 const PC_ADDRESS = 'http://192.168.2.54:8080/';
 const SERVER_URI = PC_ADDRESS + '/graphql';
 

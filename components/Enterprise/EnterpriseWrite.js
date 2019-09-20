@@ -133,7 +133,6 @@ class EnterpriseWrite extends Component {
                                                                     marginBottom: 0,
                                                                     marginRight: 0,
                                                                     height: '100%',
-                                                                    
                                                                 },
                                                                 predefinedPlacesDescription: {
                                                                     color: '#1faadb'

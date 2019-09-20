@@ -35,7 +35,7 @@ export default class ContentsListLayout extends Component {
                 <Text style={styles.titleText} onPress={() => {alert(1)}}> 
                   <FontAwesome naxme={'hashtag'} size={20} /> {title}
                 </Text>
-                <Menu ref={this.setMenuRef}  button={ <Entypo name={'dots-three-vertical'} size={20} style={{marginRight:10}} onPress={this.showMenu}/>}>
+                <Menu ref={this.setMenuRef}  button={ <Entypo name={'dots-three-vertical'} size={20} color={'#484848'} style={{marginRight:10}} onPress={this.showMenu}/>}>
                   <MenuItem onPress={this.hideMenu}>링크복사</MenuItem>
                   <MenuItem onPress={this.hideMenu}>알림설정</MenuItem>
                   <MenuItem onPress={this.hideMenu}>숨기기</MenuItem>

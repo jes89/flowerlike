@@ -15,8 +15,8 @@ const GET_USER = gql`
       email
       nickNm
       profile
-      token
-      type
+      pushToken
+      refreshToken
       device
       intro
     }
@@ -45,14 +45,14 @@ class LoginScreen extends Component {
     });
     if (type !== 'success') { return; }
     
-    const token = await AsyncStorage.getItem('token');
+    const pushToken = await AsyncStorage.getItem('pushToken');
     const device = Platform.OS;
     
     this.props.navigation.navigate('policyList', {
         userId: user.id,
         email: user.email,
         nickNm: user.name,
-        token,
+        pushToken,
         device
     });
   }
@@ -60,16 +60,18 @@ class LoginScreen extends Component {
 
 
   checkAutoLogin = (data) => {
+
     const key = Object.keys(data)[0];
+
     
     this.autoLoginObj[key] = data[key];
 
-    const { userId, email, token } = this.autoLoginObj;
+    const { userId, email, pushToken } = this.autoLoginObj;
     const { userIdLoadFinished, emailLoadFinished, tokenLoadFinished } = this;
 
     if( userIdLoadFinished && emailLoadFinished && tokenLoadFinished ){
 
-      if(userId && email && token){
+      if(userId && email && pushToken){
         this.setState({
             isLoading : false,
             isAutoLogin : true
@@ -86,18 +88,21 @@ class LoginScreen extends Component {
   componentWillMount() {
 
     AsyncStorage.getItem('userId').then((userId) => {
+      userId = Platform.OS === 'ios' ? '116577877247390439710' : userId;
       this.userIdLoadFinished = true;
       this.checkAutoLogin({userId});
     });
 
     AsyncStorage.getItem('email').then((email) => {
+      email = Platform.OS === 'ios' ? 'jungeuisub1989@gmail.com' : email;
       this.emailLoadFinished = true;
       this.checkAutoLogin({email});
     });
 
-    AsyncStorage.getItem('token').then((token) => {
+    AsyncStorage.getItem('pushToken').then((pushToken) => {
+      pushToken = Platform.OS === 'ios' ? 'ExponentPushToken[da2rI4F3tcF3yucXVzus_n]' : pushToken;
       this.tokenLoadFinished = true;
-      this.checkAutoLogin({token});
+      this.checkAutoLogin({pushToken});
     });
   }
 
@@ -122,7 +127,7 @@ class LoginScreen extends Component {
 
       const { userId } = this.autoLoginObj; 
       const { handleAutoLogin } = this.props;
-
+      
       return <Query query={GET_USER} variables={{userId}} >
          {({ loading, error, data }) => {
 
@@ -130,7 +135,7 @@ class LoginScreen extends Component {
               return <LoadingMask />;
             }
 
-            if(data.getUser == null){
+            if(data == null || data.getUser == null){
               return this.getGoogleLoginLayout();
             }
             
@@ -139,7 +144,6 @@ class LoginScreen extends Component {
               AsyncStorage.removeItem('userId');
               AsyncStorage.removeItem('email');
             }
-
 
             handleAutoLogin(data.getUser);
 

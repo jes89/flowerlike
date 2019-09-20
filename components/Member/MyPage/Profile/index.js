@@ -16,7 +16,6 @@ const SAVE_USER = gql`
           userId
           nickNm
           email
-          token
           device
           profile
         }

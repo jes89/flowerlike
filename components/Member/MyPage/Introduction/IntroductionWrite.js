@@ -67,8 +67,6 @@ class IntroductionWrite extends Component {
 
         const { text } = this.state;
 
-        console.log(text);
-
         return (
             <View style={styles.container}>
                 <HeaderLayout   title={'자기소개'} 

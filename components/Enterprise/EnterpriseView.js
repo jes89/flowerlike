@@ -49,9 +49,9 @@ const styles = StyleSheet.create({
 
 
 const mapStateToProps = (sUser) => {
-return {
-    ...sUser
-};
+    return {
+        ...sUser
+    };
 }
 
   

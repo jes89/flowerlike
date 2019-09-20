@@ -5,7 +5,7 @@ import { AsyncStorage } from "react-native";
 
 export default async () => {
 
-    let previousToken = await AsyncStorage.getItem('token');
+    let previousToken = await AsyncStorage.getItem('pushToken');
 
     if(previousToken){
         return;
@@ -22,8 +22,8 @@ export default async () => {
           return;
         }
       
-        let token = await Notifications.getExpoPushTokenAsync();
+        let pushToken = await Notifications.getExpoPushTokenAsync();
         
-        AsyncStorage.setItem('token', token);
+        AsyncStorage.setItem('pushToken', pushToken);
     }
 };

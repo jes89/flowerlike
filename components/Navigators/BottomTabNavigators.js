@@ -1,29 +1,34 @@
 import React from 'react';
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+import { Entypo } from '@expo/vector-icons';
+import { AntDesign, FontAwesome } from '@expo/vector-icons';
+import { View, Text } from 'react-native';
+import { createStackNavigator } from 'react-navigation';
+
 import Home from '../Home';
 import Search from '../Search';
 import Like from '../Like';
+
 import MyPage from '../Member/MyPage';
+import Profile from '../Member/MyPage/Profile';
+import IntroductionWrite from '../Member/MyPage/Introduction/IntroductionWrite';
+import Settings from '../Member/MyPage/Settings';
+
 import Contact from '../Contact';
 import ContentsView from '../Contents/ContentsView';
 import EmployeeList from '../Contents/Employee/EmployeeList';
-import Profile from '../Member/MyPage/Profile';
-import IntroductionWrite from '../Member/MyPage/Introduction/IntroductionWrite';
-import {createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
-import { Entypo } from '@expo/vector-icons';
-import { AntDesign, FontAwesome, MaterialIcons } from '@expo/vector-icons';
-import { View, Text } from 'react-native';
-import { createStackNavigator } from 'react-navigation';
-import Settings from '../Member/MyPage/Settings';
-import Enterprise from '../Enterprise';
-import EnterpriseView from '../Enterprise/EnterpriseView';
-import EnterpriseWrite from '../Enterprise/EnterpriseWrite';
+
+
+import { EnterpriseList, EnterpriseView, EnterpriseWrite, EnterpriseEmployeeList, EnterpriseEmployeeWrite } from '../Enterprise';
 
 const iconSize = 24;
 
 const EnterpriseStack = createStackNavigator({
-  enterprise: Enterprise,
+  enterpriseList : EnterpriseList,
   enterpriseView : EnterpriseView,
   enterpriseWrite : EnterpriseWrite,
+  enterpriseEmployeeList: EnterpriseEmployeeList,
+  enterpriseEmployeeWrite : EnterpriseEmployeeWrite,
 
 }, {
   headerMode : 'none'
@@ -43,7 +48,7 @@ const HomeStack = createStackNavigator({
   contentsView: ContentsView,
   employeeList: EmployeeList,
 }, {
-  headerMode : 'none'
+  headerMode : 'none' 
 });
 
 const MyPageStack = createStackNavigator({
@@ -115,7 +120,7 @@ export default BottomTabNavigators = createMaterialBottomTabNavigator({
     }     
   },
 },{
-  initialRouteName: 'enterprise',  
+  initialRouteName: 'home',  
   labeled : false,
   activeColor: '#5A5A5A',  
   inactiveColor: '#5A5A5A',  
