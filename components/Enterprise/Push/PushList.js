@@ -33,7 +33,7 @@ export default class PushList extends Component {
     getLayout = () => {
         
         if(pushList.length === 0){
-            return  <View style={{justifyContent:'center', alignItems:'center', flex:1 }}>
+            return  <View style={styles.isNotPushExist}>
                         <Text>{'등록된 알림이 없습니다.'}</Text>
                     </View>
         }
@@ -43,30 +43,30 @@ export default class PushList extends Component {
                     pushList.map((currentPush, idx)=>{
 
                         return (
-                                <View key={idx} style={{height: 100, marginTop: 5,}}>
-                                    <View style={{paddingTop: 15, paddingBottom: 20}}>
-                                        <View style={{flexDirection:'row'}}>
-                                            <TouchableOpacity style={{flex: 0.8}}>
-                                                <View style={{paddingLeft: 10, flex: 0.6}}>
-                                                    <View style={{justifyContent: 'center'}}>
-                                                        <Text numberOfLines={1}  ellipsizeMode={'tail'} style={{fontSize:20, fontWeight: 'bold'}} >{currentPush.title}</Text>
+                                <View key={idx} style={styles.pushListContainer}>
+                                    <View style={styles.pushContainer}>
+                                        <View style={styles.pushAside}>
+                                            <TouchableOpacity style={styles.pushInfoContainer}>
+                                                <View style={styles.pushTitleContainer}>
+                                                    <View style={styles.titleStyle}>
+                                                        <Text numberOfLines={1}  ellipsizeMode={'tail'} style={styles.titleFont} >{currentPush.title}</Text>
                                                     </View>
                                                 </View>
-                                                <View style={{paddingLeft: 10, flex: 0.4, marginBottom: 10}}>
-                                                    <View style={{justifyContent: 'center'}}>
-                                                        <Text numberOfLines={1}  ellipsizeMode={'tail'} style={{fontSize:16, marginTop: 5 }} >{currentPush.days}</Text>
-                                                        <Text numberOfLines={1}  ellipsizeMode={'tail'} style={{fontSize:16, marginTop: 5 }} >{`${currentPush.hour }시 ${currentPush.minute}분`}</Text>
+                                                <View style={styles.regDtmContainer}>
+                                                    <View style={styles.regDtmAlign}>
+                                                        <Text numberOfLines={1}  ellipsizeMode={'tail'} style={styles.regDtmFont} >{currentPush.days}</Text>
+                                                        <Text numberOfLines={1}  ellipsizeMode={'tail'} style={styles.regDtmFont} >{`${currentPush.hour }시 ${currentPush.minute}분`}</Text>
                                                     </View>
                                                 </View>
                                             </TouchableOpacity>
-                                            <View style={{flex: 0.2, alignItems: 'flex-end', height:'100%', padding: 15, }}>
-                                                <TouchableOpacity style={{alignItems:'center', justifyContent:'center', width:'100%', height:'100%', borderWidth:1, borderRadius: 5}} onPress={()=>{console.log(123)}}>
-                                                    <Text style={{textAlign:'center',}}>{'삭제'}</Text>
+                                            <View style={styles.deleteBtnContainer}>
+                                                <TouchableOpacity style={styles.deleteBtnStyle} onPress={()=>{console.log(123)}}>
+                                                    <Text style={styles.deleteBtnFont}>{'삭제'}</Text>
                                                 </TouchableOpacity>
                                             </View>
                                         </View>
                                     </View>
-                                    <View style={{width: '100%', height:1, borderWidth:1, borderColor: '#BDBDBD', borderStyle:'dotted'}} /> 
+                                    <View style={styles.separator} /> 
                                 </View>)
                     })
                 }
@@ -104,6 +104,72 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'white',
     }, 
+    isNotPushExist: {
+        justifyContent:'center', 
+        alignItems:'center', 
+        flex:1 
+    },
+    pushListContainer: {
+        height: 100,
+        marginTop: 5,
+    },
+    pushContainer: {
+        paddingTop: 15, 
+        paddingBottom: 20
+    },
+    pushAside: {
+        flexDirection:'row'
+    },
+    pushInfoContainer: {
+        flex: 0.8,
+    },
+    pushTitleContainer: {
+        paddingLeft: 10, 
+        flex: 0.6
+    },
+    titleStyle:{
+        justifyContent: 'center'
+    },
+    titleFont: {
+        fontSize:20, 
+        fontWeight: 'bold'
+    },
+    regDtmContainer: {
+        paddingLeft: 10, 
+        flex: 0.4, 
+        marginBottom: 10
+    },
+    regDtmAlign: {
+        justifyContent: 'center'
+    },
+    regDtmFont: {
+        fontSize:16, 
+        marginTop: 5
+    },
+    deleteBtnContainer: {
+        flex: 0.2, 
+        alignItems: 'flex-end', 
+        height:'100%',
+        padding: 15,
+    },
+    deleteBtnStyle: {
+        alignItems:'center', 
+        justifyContent:'center', 
+        width:'100%', 
+        height:'100%',
+        borderWidth:1, 
+        borderRadius: 5
+    },
+    deleteBtnFont: {
+        textAlign:'center',
+    },
+    separator: {
+        width: '100%', 
+        height:1, 
+        borderWidth:1, 
+        borderColor: '#BDBDBD', 
+        borderStyle:'dotted'
+    },
 });
 
 

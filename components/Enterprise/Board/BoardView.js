@@ -33,9 +33,6 @@ const renderPagination = (index, total, context) => {
 
 export default class BoardView extends Component {
 
-
-  
-
   render() {
 
     const { navigation } = this.props;
@@ -51,20 +48,18 @@ export default class BoardView extends Component {
                         leftSideButtonEvent={()=>{navigation.goBack();}} 
                         rightSideButtonEvent={() => {}} />
         <View>
-          <View style={{ padding:15, flexDirection: 'row', justifyContent: 'space-between' }}>
-            <View style={{flex: 0.7, justifyContent: 'center'}}>
-              <Text ellipsizeMode={'tail'} style={{fontWeight: 'bold', fontSize: 16, }}>{title}</Text>
+          <View style={styles.titleContainer}>
+            <View style={styles.titleStyle}>
+              <Text ellipsizeMode={'tail'} style={styles.titleFont}>{title}</Text>
             </View>
-            <View style={{justifyContent: 'center', alignContent: 'center', flex: 0.3}}>
-              <Text style={{fontWeight: 'bold', fontSize: 13, textAlign: 'right'}}>{nickNm}</Text>
-              <Text style={{fontWeight: 'bold', fontSize: 13, textAlign: 'right'}}>{regDtm}</Text>
+            <View style={styles.writeInfoContainer}>
+              <Text style={styles.writeInfoFont}>{nickNm}</Text>
+              <Text style={styles.writeInfoFont}>{regDtm}</Text>
             </View>
           </View>
-          <View style={{width: '100%', height:1, borderWidth:1, borderColor: '#BDBDBD', borderStyle:'dotted'}} /> 
+          <View style={styles.separator} /> 
         </View>
-        
-        
-        <ScrollView style={{margin: 15, width: (screenWidth - 30)}}>
+        <ScrollView style={styles.contentScroll}>
           {/* <Swiper showsButtons={false}
                     renderPagination={renderPagination}>
                     {
@@ -92,4 +87,36 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  titleContainer: {
+    padding:15, 
+    flexDirection: 'row', 
+    justifyContent: 'space-between'
+  },
+  titleStyle: {
+    flex: 0.7, 
+    justifyContent: 'center'
+  },
+  titleFont: {
+    fontWeight: 'bold', 
+    fontSize: 16, 
+  },
+  writeInfoContainer: {
+    justifyContent: 'center', 
+    alignContent: 'center', 
+    flex: 0.3
+  },
+  writeInfoFont: {
+    fontWeight: 'bold', fontSize: 13, textAlign: 'right'
+  },
+  separator: {
+    width: '100%', 
+    height:1, 
+    borderWidth:1, 
+    borderColor: '#BDBDBD', 
+    borderStyle:'dotted'
+  },
+  contentScroll: {
+    margin: 15, 
+    width: (screenWidth - 30)
+  }
 });
