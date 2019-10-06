@@ -28,15 +28,15 @@ class BoardList extends Component {
             {
                 boardList.map((currentBoard, idx)=>{
                     return (<View key={idx}  style={styles.contentsMargin}>
-                                <TouchableOpacity style={{ flex: 0.75, height: 60 }} onPress={()=> {navigation.navigate('boardView');}}>
-                                    <View style={{flexDirection:'row' }}>
-                                        <Image source={{uri: currentBoard.thumbnail}} style={{width: 80, height:60}}  />
-                                        <View style={{justifyContent: 'center',paddingLeft: 10, flex:1  }}>
-                                            <Text numberOfLines={1} ellipsizeMode={'tail'} style={{fontSize:15, fontWeight:'bold'}} >{currentBoard.title}</Text>
+                                <TouchableOpacity style={styles.titleTouchContainer} onPress={()=> {navigation.navigate('boardView');}}>
+                                    <View style={styles.titleContainer}>
+                                        <Image source={{uri: currentBoard.thumbnail}} style={styles.thumbnailStyle}  />
+                                        <View style={styles.titlePadding}>
+                                            <Text numberOfLines={1} ellipsizeMode={'tail'} style={styles.titleFont} >{currentBoard.title}</Text>
                                         </View> 
                                     </View>
                                 </TouchableOpacity>
-                                <View style={{flex: 0.25, alignItems: 'flex-end', height:60, padding: 15 }}>
+                                <View style={styles.contentsRegDtm}>
                                     <Text>{currentBoard.regDtm}</Text>
                                 </View>
                             </View>)
@@ -83,6 +83,32 @@ const styles = StyleSheet.create({
     paddingTop: 20, 
     paddingLeft: 10,
     flexDirection:'row', 
+  },
+  titleTouchContainer: {
+    flex: 0.75, 
+    height: 60 
+  },
+  titleContainer: {
+    flexDirection:'row'
+  },
+  thumbnailStyle: {
+    width: 80, 
+    height:60
+  },
+  titlePadding: {
+    justifyContent: 'center',
+    paddingLeft: 10, 
+    flex:1 
+  },
+  titleFont: {
+    fontSize:15, 
+    fontWeight:'bold'
+  },
+  contentsRegDtm: {
+    flex: 0.25, 
+    alignItems: 'flex-end', 
+    height:60, 
+    padding: 15 
   }
 });
 
