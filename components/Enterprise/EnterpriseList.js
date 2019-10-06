@@ -45,9 +45,9 @@ class EnterpriseList extends Component {
 
         return <ScrollView>
                 {
-                    enterpriseList.map((currentEnterprise, i)=>{
+                    enterpriseList.map((currentEnterprise, idx)=>{
 
-                        return (<View key={i}  style={{width:'100%', paddingTop: 20, paddingBottom: 20, paddingLeft: 20,flexDirection:'row', }}>
+                        return (<View key={idx}  style={{width:'100%', paddingTop: 20, paddingLeft: 20,flexDirection:'row', }}>
                                     <TouchableOpacity style={{ flex: 0.75, height: 75 }} onPress={()=>{
                                         this.props.navigation.navigate('enterpriseWrite',{
                                             idx : 0
@@ -66,10 +66,10 @@ class EnterpriseList extends Component {
                                                                                         size={20} 
                                                                                         color={'#484848'} 
                                                                                         style={{marginRight:20}} 
-                                                                                        onPress={()=> {this.showMenu(i)}}/>}>
-                                            <MenuItem onPress={()=> {this.doMenuEvent('enterpriseEmployeeList', currentEnterprise ,i)}}>직원관리</MenuItem>
-                                            <MenuItem onPress={()=> {this.doMenuEvent('enterpriseEmployeeList', currentEnterprise ,i)}}>알림등록</MenuItem>
-                                            <MenuItem onPress={()=> {this.doMenuEvent('enterpriseEmployeeList', currentEnterprise ,i)}}>게시판</MenuItem>
+                                                                                        onPress={()=> {this.showMenu(idx)}}/>}>
+                                            <MenuItem onPress={()=> {this.doMenuEvent('enterpriseEmployeeList', currentEnterprise ,idx)}}>{'직원관리'}</MenuItem>
+                                            <MenuItem onPress={()=> {this.doMenuEvent('push', currentEnterprise ,idx)}}>{'알림등록'}</MenuItem>
+                                            <MenuItem onPress={()=> {this.doMenuEvent('board', currentEnterprise , idx)}}>{'직원용 게시판'}</MenuItem>
                                         </Menu>
                                     </View>
                                 </View>)

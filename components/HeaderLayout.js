@@ -48,8 +48,8 @@ const styles = StyleSheet.create({
         height:50, 
         paddingLeft:20,
         paddingRight:20,
-        borderColor : '#F6F6F6',
-        borderBottomWidth: 3,
+        borderColor : '#EAEAEA',
+        borderBottomWidth: 1,
         flexDirection:'row',
         justifyContent: 'space-between'
     },

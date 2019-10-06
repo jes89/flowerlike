@@ -9,7 +9,7 @@ import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 
 const GET_USER = gql`
-  query GetUser($userId: ID){
+  query getUser($userId: String){
     getUser(userId:$userId){
       userId
       email
@@ -125,31 +125,43 @@ class LoginScreen extends Component {
 
     if(isAutoLogin){
 
-      const { userId } = this.autoLoginObj; 
+      let { userId } = this.autoLoginObj; 
       const { handleAutoLogin } = this.props;
-      
-      return <Query query={GET_USER} variables={{userId}} >
-         {({ loading, error, data }) => {
 
-            if(loading){
-              return <LoadingMask />;
-            }
+      handleAutoLogin({
+        userId: 'userId',
+        nickNm: 'nickNm',
+        email: 'email',
+        accessToken: 'accessToken',
+        pushToken: 'pushToken',
+        refreshToken: 'refreshToken',
+        profile: 'profile',
+        type: 'type',
+        device: 'device',
+        intro: 'intro',
+      })
+      //TEST
+      // return <Query query={GET_USER} variables={{userId}} >
+      //    {({ loading, error, data }) => {
+      //       if(loading){
+      //         return <LoadingMask />;
+      //       }
 
-            if(data == null || data.getUser == null){
-              return this.getGoogleLoginLayout();
-            }
+      //       if(data == null || data.getUser == null){
+      //         return this.getGoogleLoginLayout();
+      //       }
             
-            if(error){
-              Alert.alert('오류', '자동로그인 도중 오류가 발생했습니다.\n다시 시도해주세요.');
-              AsyncStorage.removeItem('userId');
-              AsyncStorage.removeItem('email');
-            }
+      //       if(error){
+      //         Alert.alert('오류', '자동로그인 도중 오류가 발생했습니다.\n다시 시도해주세요.');
+      //         AsyncStorage.removeItem('userId');
+      //         AsyncStorage.removeItem('email');
+      //       }
 
-            handleAutoLogin(data.getUser);
+      //       handleAutoLogin(data.getUser);
 
-            return <LoadingMask />;
-          }}
-      </Query>
+      //       return <LoadingMask />;
+      //     }}
+      // </Query>
 
     } else{
         return this.getGoogleLoginLayout();

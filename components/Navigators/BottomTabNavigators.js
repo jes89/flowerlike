@@ -18,22 +18,42 @@ import Contact from '../Contact';
 import ContentsView from '../Contents/ContentsView';
 import EmployeeList from '../Contents/Employee/EmployeeList';
 
+import { BoardList, BoardWrite, BoardView } from '../Enterprise/Board';
 
-import { EnterpriseList, EnterpriseView, EnterpriseWrite, EnterpriseEmployeeList, EnterpriseEmployeeWrite } from '../Enterprise';
+import { PushList, PushWrite } from '../Enterprise/Push';
+
+import { EnterpriseList, EnterpriseWrite, EnterpriseEmployeeList, EnterpriseEmployeeWrite } from '../Enterprise';
 
 const iconSize = 24;
 
-const EnterpriseStack = createStackNavigator({
-  enterpriseList : EnterpriseList,
-  enterpriseView : EnterpriseView,
-  enterpriseWrite : EnterpriseWrite,
-  enterpriseEmployeeList: EnterpriseEmployeeList,
-  enterpriseEmployeeWrite : EnterpriseEmployeeWrite,
 
+const PushStack = createStackNavigator({
+  pushList: PushList,
+  pushWrite: PushWrite,
 }, {
   headerMode : 'none'
 });
 
+
+const BoardStack = createStackNavigator({
+  boardList: BoardList,
+  boardWrite: BoardWrite,
+  boardView: BoardView,
+}, {
+  headerMode : 'none'
+});
+
+
+const EnterpriseStack = createStackNavigator({
+  enterpriseList : EnterpriseList,
+  enterpriseWrite : EnterpriseWrite,
+  enterpriseEmployeeList: EnterpriseEmployeeList,
+  enterpriseEmployeeWrite : EnterpriseEmployeeWrite,
+  push: PushStack,
+  board : BoardStack
+}, {
+  headerMode : 'none'
+});
 
 const SettingStack = createStackNavigator({
   settings: Settings,
@@ -120,7 +140,7 @@ export default BottomTabNavigators = createMaterialBottomTabNavigator({
     }     
   },
 },{
-  initialRouteName: 'home',  
+  initialRouteName: 'enterprise',  
   labeled : false,
   activeColor: '#5A5A5A',  
   inactiveColor: '#5A5A5A',  
