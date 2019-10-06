@@ -5,6 +5,8 @@ import * as ImagePicker from 'expo-image-picker';
 import { connect } from 'react-redux';
 import { AntDesign } from '@expo/vector-icons';
 
+const IMAGE_ATTACH_SIZE = 40;
+
 class BoardWrite extends Component {
 
   state = {
@@ -49,7 +51,7 @@ class BoardWrite extends Component {
           <View style={styles.innerContainer}>
                 <View style={styles.termContainer}>
                     <View style={styles.titleContainer}>
-                        <Text style={styles.titleText}>제목</Text>
+                        <Text style={styles.titleText}>{'제목'}</Text>
                     </View>
                     <View style={styles.termInput}>
                         <Text>{nickNm}</Text>
@@ -57,42 +59,24 @@ class BoardWrite extends Component {
                 </View>
                 <View style={styles.termContainer}>
                     <View style={styles.titleContainer}>
-                        <Text style={styles.titleText}>내용</Text>
+                        <Text style={styles.titleText}>{'내용'}</Text>
                     </View>
                     <View style={styles.termInput}>
                         <TextInput style={styles.contents} multiline={true}/>
                     </View>
                 </View>
-                <View style={{marginTop: 20,}}>
-                  <Text style={{fontSize: 17, fontWeight: 'bold'}}>{'이미지 등록'}</Text>
-                  <ScrollView horizontal={true} style={{marginTop: 10,}}>
-                    <View style={{flexDirection: 'row'}}>
+                <View style={styles.imagesContainer}>
+                  <Text style={styles.imagesContainerTitle}>{'이미지 등록'}</Text>
+                  <ScrollView horizontal={true} style={styles.imageScroll}>
+                    <View style={styles.imagesList}>
                       <TouchableOpacity onPress={selectPic}>
-                        <View style={{borderColor: '#adadad', borderWidth:1, width: 150, height: 113, justifyContent: 'center', alignItems: 'center'}}>
-                          <AntDesign name={'pluscircleo'} size={40} color={'#4C4C4C'}></AntDesign>
+                        <View style={styles.imageBorder}>
+                          <AntDesign name={'pluscircleo'} size={IMAGE_ATTACH_SIZE} color={'#4C4C4C'}></AntDesign>
                         </View>
                       </TouchableOpacity>
-                      <View style={{borderColor: '#adadad', borderWidth:1, width: 150, height: 113, justifyContent: 'center', alignItems: 'center'}}>
-                          <AntDesign name={'pluscircleo'} size={40} color={'#4C4C4C'}></AntDesign>
-                        </View>
-                        <View style={{borderColor: '#adadad', borderWidth:1, width: 150, height: 113, justifyContent: 'center', alignItems: 'center'}}>
-                          <AntDesign name={'pluscircleo'} size={40} color={'#4C4C4C'}></AntDesign>
-                        </View>
-                        <View style={{borderColor: '#adadad', borderWidth:1, width: 150, height: 113, justifyContent: 'center', alignItems: 'center'}}>
-                          <AntDesign name={'pluscircleo'} size={40} color={'#4C4C4C'}></AntDesign>
-                        </View>
-                        <View style={{borderColor: '#adadad', borderWidth:1, width: 150, height: 113, justifyContent: 'center', alignItems: 'center'}}>
-                          <AntDesign name={'pluscircleo'} size={40} color={'#4C4C4C'}></AntDesign>
-                        </View>
-                        <View style={{borderColor: '#adadad', borderWidth:1, width: 150, height: 113, justifyContent: 'center', alignItems: 'center'}}>
-                          <AntDesign name={'pluscircleo'} size={40} color={'#4C4C4C'}></AntDesign>
-                        </View>
-                        <View style={{borderColor: '#adadad', borderWidth:1, width: 150, height: 113, justifyContent: 'center', alignItems: 'center'}}>
-                          <AntDesign name={'pluscircleo'} size={40} color={'#4C4C4C'}></AntDesign>
-                        </View>
-                        <View style={{borderColor: '#adadad', borderWidth:1, width: 150, height: 113, justifyContent: 'center', alignItems: 'center'}}>
-                          <AntDesign name={'pluscircleo'} size={40} color={'#4C4C4C'}></AntDesign>
-                        </View>
+                        <View style={styles.imageBorder}></View>
+                        <View style={styles.imageBorder}></View>
+                        <View style={styles.imageBorder}></View>
                       </View>
                   </ScrollView>
                   
@@ -137,6 +121,27 @@ const styles = StyleSheet.create({
     contents: {
         height: 150,
     },
+    imagesContainer: {
+      marginTop: 20,
+    },
+    imagesContainerTitle: {
+      fontSize: 17, 
+      fontWeight: 'bold'
+    },  
+    imageScroll: {
+      marginTop: 10,
+    },
+    imagesList: {
+      flexDirection: 'row'
+    },
+    imageBorder: {
+      borderColor: '#adadad', 
+      borderWidth:1, 
+      width: 150, 
+      height: 113, 
+      justifyContent: 'center', 
+      alignItems: 'center'
+    }
 });
 
 

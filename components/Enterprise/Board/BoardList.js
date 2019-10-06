@@ -21,13 +21,13 @@ class BoardList extends Component {
   getLayout = () => {
     const { navigation } = this.props;
     if(boardList.length === 0){
-        return  <View style={{justifyContent:'center', alignItems:'center', flex:1 }}><Text>{'첫번째 게시물을 등록해보세요 !'}</Text></View>;
+        return  <View style={styles.postEncouragement}><Text>{'첫번째 게시물을 등록해보세요 !'}</Text></View>;
     }
 
     return <ScrollView>
             {
                 boardList.map((currentBoard, idx)=>{
-                    return (<View key={idx}  style={{width:'100%', paddingTop: 20, paddingLeft: 10,flexDirection:'row', }}>
+                    return (<View key={idx}  style={styles.contentsMargin}>
                                 <TouchableOpacity style={{ flex: 0.75, height: 60 }} onPress={()=> {navigation.navigate('boardView');}}>
                                     <View style={{flexDirection:'row' }}>
                                         <Image source={{uri: currentBoard.thumbnail}} style={{width: 80, height:60}}  />
@@ -73,6 +73,17 @@ const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: 'white',
   }, 
+  postEncouragement: {
+    justifyContent:'center', 
+    alignItems:'center', 
+    flex:1 
+  },
+  contentsMargin: {
+    width:'100%', 
+    paddingTop: 20, 
+    paddingLeft: 10,
+    flexDirection:'row', 
+  }
 });
 
 
