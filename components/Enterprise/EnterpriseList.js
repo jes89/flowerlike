@@ -40,29 +40,29 @@ class EnterpriseList extends Component {
     getLayout = () => {
         
         if(enterpriseList.length === 0){
-            return  <View style={{justifyContent:'center', alignItems:'center', flex:1 }}><Text>{'첫번째 나의 매장을 등록해보세요 !'}</Text></View>;
+            return  <View style={styles.registerEncouragement}><Text>{'첫번째 나의 매장을 등록해보세요 !'}</Text></View>;
         }
 
         return <ScrollView>
                 {
                     enterpriseList.map((currentEnterprise, idx)=>{
 
-                        return (<View key={idx}  style={{width:'100%', paddingTop: 20, paddingLeft: 20,flexDirection:'row', }}>
-                                    <TouchableOpacity style={{ flex: 0.75, height: 75 }} onPress={()=>{
+                        return (<View key={idx}  style={styles.enterpriseListContainer}>
+                                    <TouchableOpacity style={styles.enterpriseTouchContainer} onPress={()=>{
                                         this.props.navigation.navigate('enterpriseWrite',{
                                             idx : 0
                                         });
                                     }}>
                                         <View style={{flexDirection:'row' }}>
-                                            <Image source={{uri: currentEnterprise.thumbnail}} style={{width: 100, height:75}}  />
-                                            <View style={{justifyContent: 'center',paddingLeft: 10, flex:1  }}>
-                                                <Text numberOfLines={1} ellipsizeMode={'tail'} style={{fontSize:15, fontWeight:'bold'}} >{currentEnterprise.name}</Text>
+                                            <Image source={{uri: currentEnterprise.thumbnail}} style={styles.thumbnailStyle}  />
+                                            <View style={styles.enterpriseInfo}>
+                                                <Text numberOfLines={1} ellipsizeMode={'tail'} style={styles.enterpriseNameFont} >{currentEnterprise.name}</Text>
                                                 <Text numberOfLines={2} ellipsizeMode={'tail'} >{currentEnterprise.location}</Text>
                                             </View> 
                                         </View>
                                     </TouchableOpacity>
-                                    <View style={{flex: 0.25,  justifyContent: 'center', alignItems: 'flex-end', height:75 }}>
-                                        <Menu ref={this.setMenuRef} button={ <Entypo  name={'dots-three-vertical'} 
+                                    <View style={styles.contextMenuContainer}>
+                                        <Menu ref={this.setMenuRef} button={ <Entypo    ame={'dots-three-vertical'} 
                                                                                         size={20} 
                                                                                         color={'#484848'} 
                                                                                         style={{marginRight:20}} 
@@ -122,6 +122,41 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'white',
     }, 
+    registerEncouragement: {
+        justifyContent:'center', 
+        alignItems:'center', 
+        flex:1
+    },
+    enterpriseListContainer: {
+        width:'100%', 
+        paddingTop: 20, 
+        paddingLeft: 20,
+        flexDirection:'row',
+    },
+    enterpriseTouchContainer: {
+        flex: 0.8, 
+        height: 75
+    },
+    thumbnailStyle: {
+        width: 100, 
+        height:75
+    },
+    enterpriseInfo: {
+        justifyContent: 'center',
+        paddingLeft: 10, 
+        flex:1 
+    },
+    enterpriseNameFont: {
+        fontSize:15, 
+        fontWeight:'bold'
+    },
+    contextMenuContainer: {
+        flex: 0.2,  
+        justifyContent: 'center', 
+        alignItems: 'flex-end',
+        height:75
+    }
+
 });
 
 

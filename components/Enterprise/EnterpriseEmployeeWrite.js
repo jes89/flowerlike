@@ -27,18 +27,18 @@ class EnterpriseEmployeeWrite extends Component {
                                 leftSideButtonEvent={()=>{navigation.goBack()}} 
                                 rightSideButtonEvent={()=>{}}  />
                 <View>
-                    <View style={{}}>
+                    <View>
                         <Searchbar  style={styles.searchbar}
                                     placeholder={'이메일'}
                                     onChangeText={this.updateSearchText}
                                     value={emailSearchTxt} />
                         <View style={styles.profileContainer}>
                             <Image source={require('../../assets/default_profile_image.png')} style={styles.profileImg} />
-                            <Text style={{textAlign:'center', marginTop : 10, fontSize:17, fontWeight: 'bold'}}>{'섭서비'}</Text>
+                            <Text style={styles.employeeNickNm}>{'섭서비'}</Text>
                         </View>
-                        <View style={{alignItems: 'center', marginTop: 20,}}>
-                            <TouchableOpacity style={{width:90, height:30, justifyContent: 'center',  backgroundColor: '#6799FF', borderRadius: 5 }}>
-                                <Text style={{textAlign: 'center', color: 'white'}}>{'고용관계 요청'}</Text>
+                        <View style={styles.requestHiringContainer}>
+                            <TouchableOpacity style={styles.requestHiringBtnStyle}>
+                                <Text style={styles.requestHiringBtnFont}>{'고용관계 요청'}</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -68,6 +68,27 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         borderWidth: 1,
         borderColor: '#EAEAEA',
+    },
+    employeeNickNm: {
+        textAlign:'center', 
+        marginTop : 10, 
+        fontSize:17, 
+        fontWeight: 'bold'
+    },
+    requestHiringContainer: {
+        alignItems: 'center', 
+        marginTop: 20,
+    },
+    requestHiringBtnStyle: {
+        width:90, 
+        height:30, 
+        justifyContent: 'center',  
+        backgroundColor: '#6799FF', 
+        borderRadius: 5
+    },
+    requestHiringBtnFont: {
+        textAlign: 'center', 
+        color: 'white'
     }
 });
 
