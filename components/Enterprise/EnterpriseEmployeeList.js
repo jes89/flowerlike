@@ -7,14 +7,14 @@ import { FontAwesome5 } from '@expo/vector-icons';
 const ICON_SIZE = 20;
 
 const employeeList = [
-    {idx : 1 , name: 'Real Coffee1', thumbnail: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxaNn9b0FnSsMw4JeQY56QnwPHiywpEieNliuMBGnjlK_OjcF'},
-    {idx : 2 , name: 'Real Coffee2', thumbnail: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxaNn9b0FnSsMw4JeQY56QnwPHiywpEieNliuMBGnjlK_OjcF'},
-    {idx : 3 , name: 'Real Coffee3', thumbnail: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxaNn9b0FnSsMw4JeQY56QnwPHiywpEieNliuMBGnjlK_OjcF'},
-    {idx : 4 , name: 'Real Coffee4', thumbnail: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxaNn9b0FnSsMw4JeQY56QnwPHiywpEieNliuMBGnjlK_OjcF'},
-    {idx : 5 , name: 'Real Coffee5', thumbnail: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxaNn9b0FnSsMw4JeQY56QnwPHiywpEieNliuMBGnjlK_OjcF'},
-    {idx : 6 , name: 'Real Coffee6', thumbnail: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxaNn9b0FnSsMw4JeQY56QnwPHiywpEieNliuMBGnjlK_OjcF'},
-    {idx : 7 , name: 'Real Coffee7', thumbnail: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxaNn9b0FnSsMw4JeQY56QnwPHiywpEieNliuMBGnjlK_OjcF'},
-    {idx : 8 , name: 'Real Coffee8', thumbnail: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxaNn9b0FnSsMw4JeQY56QnwPHiywpEieNliuMBGnjlK_OjcF'},
+    {idx : 1 , name: '가게이름1', thumbnail: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxaNn9b0FnSsMw4JeQY56QnwPHiywpEieNliuMBGnjlK_OjcF'},
+    {idx : 2 , name: '가게이름1', thumbnail: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxaNn9b0FnSsMw4JeQY56QnwPHiywpEieNliuMBGnjlK_OjcF'},
+    {idx : 3 , name: '가게이름13', thumbnail: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxaNn9b0FnSsMw4JeQY56QnwPHiywpEieNliuMBGnjlK_OjcF'},
+    {idx : 4 , name: '가게이름14', thumbnail: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxaNn9b0FnSsMw4JeQY56QnwPHiywpEieNliuMBGnjlK_OjcF'},
+    {idx : 5 , name: '가게이름15', thumbnail: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxaNn9b0FnSsMw4JeQY56QnwPHiywpEieNliuMBGnjlK_OjcF'},
+    {idx : 6 , name: '가게이름16', thumbnail: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxaNn9b0FnSsMw4JeQY56QnwPHiywpEieNliuMBGnjlK_OjcF'},
+    {idx : 7 , name: '가게이름17', thumbnail: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxaNn9b0FnSsMw4JeQY56QnwPHiywpEieNliuMBGnjlK_OjcF'},
+    {idx : 8 , name: '가게이름18', thumbnail: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnxaNn9b0FnSsMw4JeQY56QnwPHiywpEieNliuMBGnjlK_OjcF'},
 ]
 
 class EnterpriseEmployeeList extends Component {
@@ -22,25 +22,25 @@ class EnterpriseEmployeeList extends Component {
     getLayout = () => {
         
         if(employeeList.length === 0){
-            return  <View style={{justifyContent:'center', alignItems:'center', flex:1 }}><Text>{'첫번째 직원을 등록해보세요 !'}</Text></View>;
+            return  <View style={styles.postEncouragement}><Text>{'첫번째 직원을 등록해보세요 !'}</Text></View>;
         }
 
         return <ScrollView>
                 {
                     employeeList.map((currentEmployee, i)=>{
 
-                        return (<View key={i}  style={{width:'100%', paddingTop: 20, paddingLeft: 10,flexDirection:'row', }}>
-                                    <View style={{ flex: 0.75, height: 60 }}>
-                                        <View style={{flexDirection:'row' }}>
-                                            <Image source={{uri: currentEmployee.thumbnail}} style={{width: 80, height:60}}  />
-                                            <View style={{justifyContent: 'center',paddingLeft: 10, flex:1  }}>
-                                                <Text numberOfLines={1} ellipsizeMode={'tail'} style={{fontSize:15, fontWeight:'bold'}} >{currentEmployee.name}</Text>
+                        return (<View key={i}  style={styles.employeeListContainer}>
+                                    <View style={styles.employeeInfoContainer}>
+                                        <View style={styles.employeeContainerStyle}>
+                                            <Image source={{uri: currentEmployee.thumbnail}} style={styles.thumbnailStyle}  />
+                                            <View style={styles.ninkNmStyle}>
+                                                <Text numberOfLines={1} ellipsizeMode={'tail'} style={styles.nickNmFont} >{currentEmployee.name}</Text>
                                             </View> 
                                         </View>
                                     </View>
-                                    <View style={{flex: 0.25, alignItems: 'flex-end', height:60, padding: 15 }}>
-                                        <TouchableOpacity style={{alignItems:'center', justifyContent:'center', width:'100%', height:'100%', borderWidth:1, borderRadius: 5}} onPress={()=>{console.log(123)}}>
-                                            <Text style={{textAlign:'center',}}>{'삭제'}</Text>
+                                    <View style={styles.deleteBtnContainer}>
+                                        <TouchableOpacity style={styles.deleteBtnStyle} onPress={()=>{console.log(123)}}>
+                                            <Text style={styles.deleteBtnFont}>{'삭제'}</Text>
                                         </TouchableOpacity>
                                     </View>
                                 </View>)
@@ -77,6 +77,54 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'white',
     }, 
+    postEncouragement: {
+        justifyContent:'center', 
+        alignItems:'center', 
+        flex:1 
+    },
+    employeeListContainer: {
+        width:'100%', 
+        paddingTop: 20, 
+        paddingLeft: 10,
+        flexDirection:'row',
+    },
+    employeeInfoContainer: {
+        flex: 0.75, 
+        height: 60
+    },
+    employeeContainerStyle: {
+        flexDirection:'row' 
+    },
+    ninkNmStyle: {
+        justifyContent: 'center',
+        paddingLeft: 10, 
+        flex:1 
+    },
+    nickNmFont: {
+        fontSize:15, 
+        fontWeight:'bold'
+    },
+    thumbnailStyle: {
+        width: 80, 
+        height:60
+    },
+    deleteBtnContainer: {
+        flex: 0.25, 
+        alignItems: 'flex-end', 
+        height:60, 
+        padding: 15
+    },
+    deleteBtnStyle: {
+        alignItems:'center', 
+        justifyContent:'center', 
+        width:'100%', 
+        height:'100%', 
+        borderWidth:1, 
+        borderRadius: 5
+    },
+        deleteBtnFont: {
+        textAlign:'center',
+    }
 });
 
 

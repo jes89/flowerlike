@@ -9,14 +9,14 @@ import Menu, { MenuItem } from 'react-native-material-menu';
 const ICON_SIZE = 20;
 
 const enterpriseList = [
-    {idx : 1 , name: 'Real Coffee1', location : '서울특별시 강북구 노해로9나길 10 서울특별시 강북구 노해로9나길 10',  thumbnail: 'https://lh5.googleusercontent.com/p/AF1QipPGl5a5UtKthtlNZRoaRxcUBFcHbKX6sQptEgCJ=w180-h180-n-k-no'},
-    {idx : 2 , name: 'Real Coffee2', location : '서울특별시 강북구 노해로9나길 10', thumbnail: 'https://lh5.googleusercontent.com/p/AF1QipPGl5a5UtKthtlNZRoaRxcUBFcHbKX6sQptEgCJ=w180-h180-n-k-no'},
-    {idx : 3 , name: 'Real Coffee3', location : '서울특별시 강북구 노해로9나길 10', thumbnail: 'https://lh5.googleusercontent.com/p/AF1QipPGl5a5UtKthtlNZRoaRxcUBFcHbKX6sQptEgCJ=w180-h180-n-k-no'},
-    {idx : 4 , name: 'Real Coffee4', location : '서울특별시 강북구 노해로9나길 10', thumbnail: 'https://lh5.googleusercontent.com/p/AF1QipPGl5a5UtKthtlNZRoaRxcUBFcHbKX6sQptEgCJ=w180-h180-n-k-no'},
-    {idx : 5 , name: 'Real Coffee5', location : '서울특별시 강북구 노해로9나길 10', thumbnail: 'https://lh5.googleusercontent.com/p/AF1QipPGl5a5UtKthtlNZRoaRxcUBFcHbKX6sQptEgCJ=w180-h180-n-k-no'},
-    {idx : 6 , name: 'Real Coffee6', location : '서울특별시 강북구 노해로9나길 10', thumbnail: 'https://lh5.googleusercontent.com/p/AF1QipPGl5a5UtKthtlNZRoaRxcUBFcHbKX6sQptEgCJ=w180-h180-n-k-no'},
-    {idx : 7 , name: 'Real Coffee7', location : '서울특별시 강북구 노해로9나길 10', thumbnail: 'https://lh5.googleusercontent.com/p/AF1QipPGl5a5UtKthtlNZRoaRxcUBFcHbKX6sQptEgCJ=w180-h180-n-k-no'},
-    {idx : 8 , name: 'Real Coffee8', location : '서울특별시 강북구 노해로9나길 10', thumbnail: 'https://lh5.googleusercontent.com/p/AF1QipPGl5a5UtKthtlNZRoaRxcUBFcHbKX6sQptEgCJ=w180-h180-n-k-no'},
+    {idx : 1 , name: '가게이름 뭔가1', location : '서울특별시 강북구 노해로9나길 10 서울특별시 강북구 노해로9나길 10',  thumbnail: 'https://lh5.googleusercontent.com/p/AF1QipPGl5a5UtKthtlNZRoaRxcUBFcHbKX6sQptEgCJ=w180-h180-n-k-no'},
+    {idx : 2 , name: '가게이름 뭔가2', location : '서울특별시 강북구 노해로9나길 10', thumbnail: 'https://lh5.googleusercontent.com/p/AF1QipPGl5a5UtKthtlNZRoaRxcUBFcHbKX6sQptEgCJ=w180-h180-n-k-no'},
+    {idx : 3 , name: '가게이름 뭔가3', location : '서울특별시 강북구 노해로9나길 10', thumbnail: 'https://lh5.googleusercontent.com/p/AF1QipPGl5a5UtKthtlNZRoaRxcUBFcHbKX6sQptEgCJ=w180-h180-n-k-no'},
+    {idx : 4 , name: '가게이름 뭔가4', location : '서울특별시 강북구 노해로9나길 10', thumbnail: 'https://lh5.googleusercontent.com/p/AF1QipPGl5a5UtKthtlNZRoaRxcUBFcHbKX6sQptEgCJ=w180-h180-n-k-no'},
+    {idx : 5 , name: '가게이름 뭔가5', location : '서울특별시 강북구 노해로9나길 10', thumbnail: 'https://lh5.googleusercontent.com/p/AF1QipPGl5a5UtKthtlNZRoaRxcUBFcHbKX6sQptEgCJ=w180-h180-n-k-no'},
+    {idx : 6 , name: '가게이름 뭔가6', location : '서울특별시 강북구 노해로9나길 10', thumbnail: 'https://lh5.googleusercontent.com/p/AF1QipPGl5a5UtKthtlNZRoaRxcUBFcHbKX6sQptEgCJ=w180-h180-n-k-no'},
+    {idx : 7 , name: '가게이름 뭔가7', location : '서울특별시 강북구 노해로9나길 10', thumbnail: 'https://lh5.googleusercontent.com/p/AF1QipPGl5a5UtKthtlNZRoaRxcUBFcHbKX6sQptEgCJ=w180-h180-n-k-no'},
+    {idx : 8 , name: '가게이름 뭔가8', location : '서울특별시 강북구 노해로9나길 10', thumbnail: 'https://lh5.googleusercontent.com/p/AF1QipPGl5a5UtKthtlNZRoaRxcUBFcHbKX6sQptEgCJ=w180-h180-n-k-no'},
 ]
 
 
