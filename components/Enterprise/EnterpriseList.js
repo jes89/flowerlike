@@ -62,7 +62,7 @@ class EnterpriseList extends Component {
                                         </View>
                                     </TouchableOpacity>
                                     <View style={styles.contextMenuContainer}>
-                                        <Menu ref={this.setMenuRef} button={ <Entypo    ame={'dots-three-vertical'} 
+                                        <Menu ref={this.setMenuRef} button={ <Entypo    name={'dots-three-vertical'} 
                                                                                         size={20} 
                                                                                         color={'#484848'} 
                                                                                         style={{marginRight:20}} 

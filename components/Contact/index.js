@@ -52,7 +52,7 @@ class Contact extends Component {
                     <View style={styles.innerContainer}>
                         <View style={styles.termContainer}>
                             <View style={styles.titleContainer}>
-                                <Text style={styles.titleText}>닉네임</Text>
+                                <Text style={styles.titleText}>{'닉네임'}</Text>
                             </View>
                             <View style={styles.termInput}>
                                 <Text>{nickNm}</Text>
@@ -60,7 +60,7 @@ class Contact extends Component {
                         </View>
                         <View style={styles.termContainer}>
                             <View style={styles.titleContainer}>
-                                <Text style={styles.titleText}>이메일</Text>
+                                <Text style={styles.titleText}>{'이메일'}</Text>
                             </View>
                             <View style={styles.termInput}>
                                 <Text>{email}</Text>
@@ -68,7 +68,7 @@ class Contact extends Component {
                         </View>
                         <View style={styles.termContainer}>
                             <View style={styles.titleContainer}>
-                                <Text style={styles.titleText}>문의종류</Text>
+                                <Text style={styles.titleText}>{'문의종류'}</Text>
                             </View>
                             <View style={styles.termInput}>
                             <RNPickerSelect placeholder={default_type}
@@ -78,7 +78,7 @@ class Contact extends Component {
                         </View>
                         <View style={styles.termContainer}>
                             <View style={styles.titleContainer}>
-                                <Text style={styles.titleText}>내용</Text>
+                                <Text style={styles.titleText}>{'내용'}</Text>
                             </View>
                             <View style={styles.termInput}>
                                 <TextInput style={styles.contents} multiline={true}/>
@@ -87,7 +87,7 @@ class Contact extends Component {
                       
                         <View style={styles.policyWrap}>
                             <View style={styles.policyTitleWrap}>
-                                <Text style={styles.policyTitle}>개인정보 수집 및 이용 약관</Text>
+                                <Text style={styles.policyTitle}>{'개인정보 수집 및 이용 약관'}</Text>
                             </View>
                             <View style={styles.policyContents}>
                                 <ScrollView>
@@ -96,7 +96,7 @@ class Contact extends Component {
                             </View>
                         </View>
                         <View style={styles.agreeContainer}>
-                            <Text style={styles.agreeText}>개인정보 수집 및 이용에 동의합니다.(필수)</Text>
+                            <Text style={styles.agreeText}>{'개인정보 수집 및 이용에 동의합니다.(필수)'}</Text>
                             <View style={styles.agreeRadioWrap}>
                                  <RadioGroup radioButtons={this.state.data}  flexDirection='row' onPress={data => this.setState({ data })} />
                             </View>

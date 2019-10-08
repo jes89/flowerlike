@@ -74,7 +74,7 @@ export default class BoardView extends Component {
                         })
                     }
             </Swiper> */}
-          <Text style={{fontWeight: 'bold', fontSize: 35,}}>{nickNm}</Text>
+          <Text style={styles.nickNmFont}>{nickNm}</Text>
         </ScrollView>
         
           
@@ -118,5 +118,10 @@ const styles = StyleSheet.create({
   contentScroll: {
     margin: 15, 
     width: (screenWidth - 30)
+  },
+  nickNmFont: {
+    fontWeight: 'bold', 
+    fontSize: 35,
   }
+
 });
